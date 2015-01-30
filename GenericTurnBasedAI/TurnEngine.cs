@@ -18,6 +18,7 @@ namespace GenericTurnBasedAI
 		{
 			get; private set;
 		}
+
 		bool collectStats = false;
 		
 		public delegate void TurnReady(Turn bestTurn);
