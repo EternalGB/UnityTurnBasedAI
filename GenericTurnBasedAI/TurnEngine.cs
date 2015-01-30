@@ -27,6 +27,8 @@ namespace GenericTurnBasedAI
 		
 		public TurnEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
 		{
+			if(limit <= 0)
+				throw new ArgumentOutOfRangeException("limit");
 			this.timeLimited = timeLimited;
 			this.collectStats = collectStats;
 			if(timeLimited) {
@@ -106,7 +108,6 @@ namespace GenericTurnBasedAI
 					//for debugging/logging purposes
 					depth--;
 				bestTurn = GetRandomElement<Turn>(results);
-				//Debug.Log ("Best value " + resultsValue + ", Ply: " + depth);
 			}
 			if(collectStats)
 				Stats.Log(depth,DateTime.Now.Subtract(startTime).Seconds);
@@ -115,13 +116,6 @@ namespace GenericTurnBasedAI
 		
 		float AlphaBeta(GameState state, int depth, float alpha, float beta, bool ourTurn)
 		{
-			//if we already have a value for this state then we can just skip everything
-			/*
-		if(transTable.ContainsKey(state) && transTable[state].depth < depth) {
-			Debug.Log ("Used transposition table!");
-			return transTable[state].value;
-		}
-		*/
 			if(depth == 0 || state.IsTerminal()) {
 				return eval.Evaluate(state);
 			}
@@ -135,10 +129,8 @@ namespace GenericTurnBasedAI
 						bestValue = value;
 					}
 					value = Math.Max(value,bestValue);
-					//AddTransposition(nextState,value,depth);
 					alpha = Math.Max(alpha,value);
 					if(beta <= alpha) {
-						//Debug.Log ("Pruned a branch");
 						break;
 					}
 					
@@ -153,10 +145,8 @@ namespace GenericTurnBasedAI
 						worstValue = value;
 					}
 					value = Math.Min(value,worstValue);
-					//AddTransposition(nextState,value,depth);
 					beta = Math.Min(beta,value);
 					if(beta <= alpha) {
-						//Debug.Log ("Pruned a branch");
 						break;
 					}
 				}
@@ -179,35 +169,6 @@ namespace GenericTurnBasedAI
 				return old;
 			} else
 				return null;
-		}
-		
-		public class Node
-		{
-			public GameState state;
-			public Node parent;
-			public int depth;
-			public bool ourTurn;
-			public float value;
-			public Turn generatedBy;
-			public Turn bestTurn;
-			public float alpha;
-			public float beta;
-			
-			public Node (GameState state, Node parent, Turn generatedBy, int depth, bool ourTurn, float alpha, float beta)
-			{
-				this.state = state;
-				this.depth = depth;
-				this.ourTurn = ourTurn;
-				this.parent = parent;
-				this.generatedBy = generatedBy;
-				if(ourTurn)
-					value = float.MinValue;
-				else
-					value = float.MaxValue;
-				this.alpha = alpha;
-				this.beta = beta;
-			}
-			
 		}
 		
 	}
