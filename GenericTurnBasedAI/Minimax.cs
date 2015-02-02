@@ -26,10 +26,12 @@ namespace GenericTurnBasedAI
 
 		public float EvaluateState(GameState state, int maxDepth, bool ourTurn)
 		{
-			return AlphaBeta(state,maxDepth,eval.minValue,eval.maxValue,ourTurn);
+			return AlphaBeta(state,eval,maxDepth,eval.minValue,eval.maxValue,ourTurn);
 		}
 
-		float AlphaBeta(GameState state, int depth, float alpha, float beta, bool ourTurn)
+
+
+		public static float AlphaBeta(GameState state, Evaluator eval, int depth, float alpha, float beta, bool ourTurn)
 		{
 			if(depth == 0 || state.IsTerminal()) {
 				return eval.Evaluate(state);
@@ -38,7 +40,7 @@ namespace GenericTurnBasedAI
 				float bestValue = eval.minValue;
 				foreach(Turn turn in state.GeneratePossibleTurns()) {
 					GameState nextState = turn.ApplyTurn(state.Clone());
-					float value = AlphaBeta(nextState,depth-1,alpha,beta,false);
+					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,false);
 					if(value > bestValue) {
 						
 						bestValue = value;
@@ -55,7 +57,7 @@ namespace GenericTurnBasedAI
 				float worstValue = eval.maxValue;
 				foreach(Turn turn in state.GeneratePossibleTurns()) {
 					GameState nextState = turn.ApplyTurn(state.Clone());
-					float value = AlphaBeta(nextState,depth-1,alpha,beta,true);
+					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,true);
 					if(value < worstValue) {
 						worstValue = value;
 					}
@@ -69,6 +71,8 @@ namespace GenericTurnBasedAI
 			}
 		}
 	}
+
+
 }
 
 

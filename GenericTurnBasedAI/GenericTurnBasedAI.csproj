@@ -43,6 +43,7 @@
     <Compile Include="HashableGameState.cs" />
     <Compile Include="HashableTurn.cs" />
     <Compile Include="Minimax.cs" />
+    <Compile Include="TurnEngineSingleThreaded.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

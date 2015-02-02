@@ -5,33 +5,27 @@ using System.Threading;
 namespace GenericTurnBasedAI
 {
 
-	public class TurnEngine
+	public abstract class TurnEngine
 	{
 		
-		int maxDepth;
-		Minimax minimax;
-		Evaluator eval;
-		Turn bestTurn;
-		bool timeLimited = false;
-		float maxTime;
-		System.Random rando;
+		protected int maxDepth;
+		protected Evaluator eval;
+		protected Turn bestTurn;
+		protected bool timeLimited = false;
+		protected float maxTime;
+		protected System.Random rando;
 		public EngineStats Stats
 		{
 			get; private set;
 		}
 
-		bool collectStats = false;
+		protected bool collectStats = false;
 		
 		public delegate void TurnReady(Turn bestTurn);
 		public event TurnReady TurnReadyEvent;
 		
-		
-		public TurnEngine(Evaluator eval, int limit, bool timeLimited = false, bool collectStats = false)
-		{
-			InitEngine(eval,limit,timeLimited,collectStats);
-		}
 
-		void InitEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
+		protected void InitEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
 		{
 			if(limit <= 0)
 				throw new ArgumentOutOfRangeException("limit - must be at least 1");
@@ -47,16 +41,16 @@ namespace GenericTurnBasedAI
 			}
 
 			this.eval = eval;
-			minimax = new Minimax(eval.Clone());
+
 
 
 			rando = new System.Random((int)DateTime.Now.Ticks);
 		}
-		
+
 		public System.Collections.IEnumerator GetNextTurn(GameState state) 
 		{
 			bestTurn = null;
-			Thread thread = new Thread(MinimaxCaller);
+			Thread thread = new Thread(TurnSearchDelegate);
 			thread.Start(state);
 			while(thread.IsAlive) {
 				yield return 0;
@@ -64,65 +58,10 @@ namespace GenericTurnBasedAI
 			if(TurnReadyEvent != null)
 				TurnReadyEvent(bestTurn);
 		}
-		
-		public void MinimaxCaller(object state)
-		{
-			DateTime startTime = new DateTime(DateTime.Now.Ticks);
-			bool exit = false;
-			List<Turn> results = null;
-			float resultsValue = minimax.MinValue;
-			GameState root = (GameState)state;
 
-			
-			
-			//precompute the first level so we don't have to every time
-			List<Turn> rootTurns = new List<Turn>();
-			foreach(Turn turn in root.GeneratePossibleTurns()) {
-				rootTurns.Add(turn);
-			}
-			//this is so we can bail out without evaluating any turns
-			results = rootTurns;
+		protected abstract void TurnSearchDelegate(object state);
 
-			int depth;
-			for(depth = 1; depth <= maxDepth && !exit; depth++) {
-				List<Turn> potentialTurns = new List<Turn>();
-				
-				float bestValue = minimax.MinValue;
-				foreach(Turn turn in rootTurns) {
-					if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
-						exit = true;
-						break;
-					}
-					
-					
-					GameState nextState = turn.ApplyTurn(root.Clone());
-					float value = minimax.EvaluateState(nextState,depth-1,false);
-					if(value >= bestValue) {
-						if(value > bestValue) {
-							bestValue = value;
-							potentialTurns.Clear();
-						}
-						potentialTurns.Add(turn);
-					}
-					
-				}
-				//only overwrite the results if we haven't aborted mid search
-				if(!exit) {
-					results = potentialTurns;
-					resultsValue = bestValue;
-				} else 
-					//for debugging/logging purposes
-					depth--;
-				bestTurn = GetRandomElement<Turn>(results);
-			}
-			if(collectStats)
-				Stats.Log(depth,DateTime.Now.Subtract(startTime).Seconds);
-		}
-		
-		
-
-		
-		static T GetRandomElement<T>(IList<T> list)
+		protected static T GetRandomElement<T>(IList<T> list)
 		{
 			System.Random rando = new System.Random((int)DateTime.Now.Ticks);
 			return list[rando.Next (list.Count)];
