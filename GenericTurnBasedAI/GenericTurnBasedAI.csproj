@@ -44,6 +44,7 @@
     <Compile Include="HashableTurn.cs" />
     <Compile Include="Minimax.cs" />
     <Compile Include="TurnEngineSingleThreaded.cs" />
+    <Compile Include="TurnEngineMultiThreaded.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

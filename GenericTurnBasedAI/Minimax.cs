@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 namespace GenericTurnBasedAI
 {
@@ -7,7 +8,16 @@ namespace GenericTurnBasedAI
 	public class Minimax
 	{
 
+		GameState rootState;
+		public Turn firstTurn;
+		int maxDepth;
+		bool ourTurn;
 		Evaluator eval;
+		EventWaitHandle waitHandle;
+		public float Value
+		{
+			get; private set;
+		}
 
 		public float MinValue
 		{
@@ -19,17 +29,23 @@ namespace GenericTurnBasedAI
 			get {return eval.maxValue;}
 		}
 
-		public Minimax(Evaluator eval)
+		public Minimax (GameState rootState, Turn firstTurn, Evaluator eval, int maxDepth, bool ourTurn, EventWaitHandle waitHandle)
 		{
+			this.rootState = rootState;
+			this.firstTurn = firstTurn;
+			this.maxDepth = maxDepth;
+			this.ourTurn = ourTurn;
 			this.eval = eval;
+			this.waitHandle = waitHandle;
 		}
+		
 
-		public float EvaluateState(GameState state, int maxDepth, bool ourTurn)
+		public void EvaluateState(object threadState)
 		{
-			return AlphaBeta(state,eval,maxDepth,eval.minValue,eval.maxValue,ourTurn);
+			GameState state = firstTurn.ApplyTurn(rootState.Clone());
+			Value = AlphaBeta(state,eval,maxDepth,eval.minValue,eval.maxValue,ourTurn);
+			waitHandle.Set();
 		}
-
-
 
 		public static float AlphaBeta(GameState state, Evaluator eval, int depth, float alpha, float beta, bool ourTurn)
 		{
