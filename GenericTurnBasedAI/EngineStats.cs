@@ -4,12 +4,12 @@ namespace GenericTurnBasedAI
 	{
 		int iterations;
 		
-		int minDepth = int.MinValue;
-		int maxDepth = int.MaxValue;
+		int minDepth = int.MaxValue;
+		int maxDepth = int.MinValue;
 		float totalDepth;
 		
-		int minTime = int.MinValue;
-		int maxTime = int.MaxValue;
+		int minTime = int.MaxValue;
+		int maxTime = int.MinValue;
 		float totalTime;
 		
 		public float AverageDepth
