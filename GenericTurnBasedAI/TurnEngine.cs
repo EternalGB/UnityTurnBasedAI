@@ -27,6 +27,14 @@ namespace GenericTurnBasedAI
 		
 		public TurnEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
 		{
+			InitEngine(eval,limit,timeLimited,collectStats);
+		}
+
+
+
+		
+		void InitEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
+		{
 			if(limit <= 0)
 				throw new ArgumentOutOfRangeException("limit");
 			this.timeLimited = timeLimited;
@@ -40,12 +48,8 @@ namespace GenericTurnBasedAI
 				Stats = new EngineStats();
 			}
 			this.eval = eval;
-			InitEngine();
-		}
-		
-		
-		void InitEngine()
-		{
+
+
 			rando = new System.Random((int)DateTime.Now.Ticks);
 		}
 		
@@ -68,7 +72,7 @@ namespace GenericTurnBasedAI
 			List<Turn> results = null;
 			float resultsValue = eval.minValue;
 			GameState root = (GameState)state;
-			
+
 			
 			
 			//precompute the first level so we don't have to every time
@@ -76,7 +80,9 @@ namespace GenericTurnBasedAI
 			foreach(Turn turn in root.GeneratePossibleTurns()) {
 				rootTurns.Add(turn);
 			}
-			
+			//this is so we can bail out without evaluating any turns
+			results = rootTurns;
+
 			int depth;
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
 				List<Turn> potentialTurns = new List<Turn>();

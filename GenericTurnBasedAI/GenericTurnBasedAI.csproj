@@ -40,6 +40,8 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Turn.cs" />
     <Compile Include="TurnEngine.cs" />
+    <Compile Include="HashableGameState.cs" />
+    <Compile Include="HashableTurn.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
