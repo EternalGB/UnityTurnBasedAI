@@ -9,7 +9,9 @@ namespace GenericTurnBasedAI
 		public float maxValue = float.MaxValue;
 		
 		public abstract float Evaluate(GameState state);
-		
+
+		public abstract Evaluator Clone();
+
 	}
 }
 

@@ -9,6 +9,7 @@ namespace GenericTurnBasedAI
 	{
 		
 		int maxDepth;
+		Minimax minimax;
 		Evaluator eval;
 		Turn bestTurn;
 		bool timeLimited = false;
@@ -25,18 +26,15 @@ namespace GenericTurnBasedAI
 		public event TurnReady TurnReadyEvent;
 		
 		
-		public TurnEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
+		public TurnEngine(Evaluator eval, int limit, bool timeLimited = false, bool collectStats = false)
 		{
 			InitEngine(eval,limit,timeLimited,collectStats);
 		}
 
-
-
-		
 		void InitEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
 		{
 			if(limit <= 0)
-				throw new ArgumentOutOfRangeException("limit");
+				throw new ArgumentOutOfRangeException("limit - must be at least 1");
 			this.timeLimited = timeLimited;
 			this.collectStats = collectStats;
 			if(timeLimited) {
@@ -47,7 +45,9 @@ namespace GenericTurnBasedAI
 			if(collectStats) {
 				Stats = new EngineStats();
 			}
+
 			this.eval = eval;
+			minimax = new Minimax(eval.Clone());
 
 
 			rando = new System.Random((int)DateTime.Now.Ticks);
@@ -70,7 +70,7 @@ namespace GenericTurnBasedAI
 			DateTime startTime = new DateTime(DateTime.Now.Ticks);
 			bool exit = false;
 			List<Turn> results = null;
-			float resultsValue = eval.minValue;
+			float resultsValue = minimax.MinValue;
 			GameState root = (GameState)state;
 
 			
@@ -87,7 +87,7 @@ namespace GenericTurnBasedAI
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
 				List<Turn> potentialTurns = new List<Turn>();
 				
-				float bestValue = eval.minValue;
+				float bestValue = minimax.MinValue;
 				foreach(Turn turn in rootTurns) {
 					if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
 						exit = true;
@@ -96,7 +96,7 @@ namespace GenericTurnBasedAI
 					
 					
 					GameState nextState = turn.ApplyTurn(root.Clone());
-					float value = AlphaBeta(nextState,depth-1,eval.minValue,eval.maxValue,false);
+					float value = minimax.EvaluateState(nextState,depth-1,false);
 					if(value >= bestValue) {
 						if(value > bestValue) {
 							bestValue = value;
@@ -120,45 +120,7 @@ namespace GenericTurnBasedAI
 		}
 		
 		
-		float AlphaBeta(GameState state, int depth, float alpha, float beta, bool ourTurn)
-		{
-			if(depth == 0 || state.IsTerminal()) {
-				return eval.Evaluate(state);
-			}
-			if(ourTurn) {
-				float bestValue = eval.minValue;
-				foreach(Turn turn in state.GeneratePossibleTurns()) {
-					GameState nextState = turn.ApplyTurn(state.Clone());
-					float value = AlphaBeta(nextState,depth-1,alpha,beta,false);
-					if(value > bestValue) {
-						
-						bestValue = value;
-					}
-					value = Math.Max(value,bestValue);
-					alpha = Math.Max(alpha,value);
-					if(beta <= alpha) {
-						break;
-					}
-					
-				}
-				return bestValue;
-			} else {
-				float worstValue = eval.maxValue;
-				foreach(Turn turn in state.GeneratePossibleTurns()) {
-					GameState nextState = turn.ApplyTurn(state.Clone());
-					float value = AlphaBeta(nextState,depth-1,alpha,beta,true);
-					if(value < worstValue) {
-						worstValue = value;
-					}
-					value = Math.Min(value,worstValue);
-					beta = Math.Min(beta,value);
-					if(beta <= alpha) {
-						break;
-					}
-				}
-				return worstValue;
-			}
-		}
+
 		
 		static T GetRandomElement<T>(IList<T> list)
 		{
