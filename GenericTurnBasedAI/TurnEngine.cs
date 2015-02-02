@@ -12,11 +12,22 @@ namespace GenericTurnBasedAI
 		protected Evaluator eval;
 		protected Turn bestTurn;
 		protected bool timeLimited = false;
-		protected float maxTime;
+		protected int maxTime;
 		protected System.Random rando;
+		EngineStats _stats;
 		public EngineStats Stats
 		{
-			get; private set;
+			get
+			{
+				if(collectStats)
+					return _stats;
+				else 
+					throw new InvalidOperationException("Cannot retrieve stats if stat collection is disabled");
+			} 
+			private set
+			{
+				_stats = value;
+			}
 		}
 
 		protected bool collectStats = false;
