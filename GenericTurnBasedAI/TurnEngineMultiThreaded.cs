@@ -10,13 +10,11 @@ namespace GenericTurnBasedAI
 	public class TurnEngineMultiThreaded : TurnEngine
 	{
 
-		int maxThreads;
-		
-		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, int maxThreads, bool collectStats = false)
+		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{
 			InitEngine(eval,limit,timeLimited,collectStats);
-			this.maxThreads = maxThreads;
-			ThreadPool.SetMaxThreads(maxThreads,maxThreads);
+			//this.maxThreads = maxThreads;
+			//ThreadPool.SetMaxThreads(maxThreads,maxThreads);
 		}
 		
 		protected override void TurnSearchDelegate(object state)
