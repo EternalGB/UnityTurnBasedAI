@@ -9,24 +9,41 @@ namespace GenericTurnBasedAI
 	public class TurnEngineSingleThreadedWithHashing : TurnEngine
 	{
 		
-		Dictionary<HashableGameState, List<HashableTurn>> turnGenerationTable;
-		Dictionary<StateTurnPair, HashableGameState> stateGenerationTable;
 
+		Dictionary<HashableGameState, HashSet<HashableGameState>> stateGenerationTable;
+		Dictionary<HashableGameState, float> evaluationTable;
+		int tableSize = 1000000;
 
 		public TurnEngineSingleThreadedWithHashing(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{
 			InitEngine(eval,limit,timeLimited,collectStats);
-			turnGenerationTable = new Dictionary<HashableGameState, List<HashableTurn>>();
-			stateGenerationTable = new Dictionary<StateTurnPair, HashableGameState>();
+			InitHashing();
 		}
-		
+
+		public TurnEngineSingleThreadedWithHashing(Evaluator eval, int limit, bool timeLimited, string stateTablePath, string evalTablePath, bool collectStats = false)
+		{
+			InitEngine(eval,limit,timeLimited,collectStats);
+			InitHashing();
+			//TODO saving and loading saved tables to file
+		}
+
+		void InitHashing()
+		{
+			stateGenerationTable = new Dictionary<HashableGameState, HashSet<HashableGameState>>(tableSize);
+			evaluationTable = new Dictionary<HashableGameState, float>(tableSize);
+		}
+
 		protected override void TurnSearchDelegate(object state)
 		{
 			DateTime startTime = new DateTime(DateTime.Now.Ticks);
 			bool exit = false;
 			List<Turn> results = null;
 			float resultsValue = eval.minValue;
-			HashableGameState root = (HashableGameState)state;
+			HashableGameState root = state as HashableGameState;
+			if(root == null) {
+				Debug.LogError("Must provide HashableGameState when using Hashing enabled TurnEngines");
+				return;
+			}
 			
 			
 			
@@ -52,6 +69,7 @@ namespace GenericTurnBasedAI
 
 			int depth;
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
+				Debug.Log ("Starting depth " + depth);
 				List<Turn> potentialTurns = new List<Turn>();
 				
 				float bestValue = eval.minValue;
@@ -60,20 +78,12 @@ namespace GenericTurnBasedAI
 						exit = true;
 						break;
 					}
-					
-					//if we have the state in a table, just grab it!
-					HashableTurn hTurn = (HashableTurn)turn;
-					HashableGameState nextState;
 
-					StateTurnPair key = new StateTurnPair(root,hTurn);
-					if(stateGenerationTable.ContainsKey(key)) {
-						Debug.Log("Got something out of the stateGenerationTable!");
-						nextState = stateGenerationTable[key];
-					} else {
-						nextState = (HashableGameState)turn.ApplyTurn(root.Clone());
-						stateGenerationTable.Add(key,nextState);
+					HashableGameState nextState = turn.ApplyTurn(root.Clone()) as HashableGameState;
+					if(nextState == null) {
+						Debug.LogError("Apply turn did not produce a HashableGameState");
+						return;
 					}
-					//HashableGameState nextState = (HashableGameState)turn.ApplyTurn(root.Clone());
 					float value = AlphaBeta(nextState,eval,depth-1,eval.minValue,eval.maxValue,false);
 					if(value >= bestValue) {
 						if(value > bestValue) {
@@ -92,6 +102,7 @@ namespace GenericTurnBasedAI
 					//for debugging/logging purposes
 					depth--;
 				bestTurn = GetRandomElement<Turn>(results);
+				Debug.Log ("State Generation Table has " + stateGenerationTable.Count + " entries");
 			}
 			if(collectStats)
 				Stats.Log(depth,DateTime.Now.Subtract(startTime).Seconds);
@@ -100,29 +111,24 @@ namespace GenericTurnBasedAI
 		public float AlphaBeta(HashableGameState state, Evaluator eval, int depth, float alpha, float beta, bool ourTurn)
 		{
 			if(depth == 0 || state.IsTerminal()) {
-				return eval.Evaluate(state);
+				if(!evaluationTable.ContainsKey(state)) {
+
+					evaluationTable.Add(state,eval.Evaluate(state));
+				}
+				return evaluationTable[state];
+
 			}
 			if(ourTurn) {
 				float bestValue = eval.minValue;
 
-				if(!turnGenerationTable.ContainsKey(state)) {
+				if(!stateGenerationTable.ContainsKey(state)) {
 					foreach(Turn turn in state.GeneratePossibleTurns()) {
-						AddTurnGeneration(state,(HashableTurn)turn);
+						HashableGameState nextState = turn.ApplyTurn(state.Clone()) as HashableGameState;
+						AddStateGeneration(state,nextState);
 					}
 				}
-				IEnumerable<Turn> turns = turnGenerationTable[state];
-				foreach(Turn turn in turns) {
-					//if we have the state in a table, just grab it!
-					HashableTurn hTurn = (HashableTurn)turn;
-					HashableGameState nextState;
-					StateTurnPair key = new StateTurnPair(state,hTurn);
-					if(stateGenerationTable.ContainsKey(key)) {
-						Debug.Log("Got something out of the stateGenerationTable!");
-						nextState = stateGenerationTable[key];
-					} else {
-					 	nextState = (HashableGameState)turn.ApplyTurn(state.Clone());
-						stateGenerationTable.Add(key,nextState);
-					}
+				foreach(HashableGameState nextState in stateGenerationTable[state]) {
+					//HashableGameState nextState = turn.ApplyTurn(state.Clone()) as HashableGameState;
 					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,false);
 					if(value > bestValue) {
 						bestValue = value;
@@ -137,24 +143,14 @@ namespace GenericTurnBasedAI
 				return bestValue;
 			} else {
 				float worstValue = eval.maxValue;
-				if(!turnGenerationTable.ContainsKey(state)) {
+
+				if(!stateGenerationTable.ContainsKey(state)) {
 					foreach(Turn turn in state.GeneratePossibleTurns()) {
-						AddTurnGeneration(state,(HashableTurn)turn);
+						HashableGameState nextState = turn.ApplyTurn(state.Clone()) as HashableGameState;
+						AddStateGeneration(state,nextState);
 					}
 				}
-				IEnumerable<Turn> turns = turnGenerationTable[state];
-				foreach(Turn turn in turns) {
-					//if we have the state in a table, just grab it!
-					HashableTurn hTurn = (HashableTurn)turn;
-					HashableGameState nextState;
-					StateTurnPair key = new StateTurnPair(state,hTurn);
-					if(stateGenerationTable.ContainsKey(key)) {
-						Debug.Log("Got something out of the stateGenerationTable!");
-						nextState = stateGenerationTable[key];
-					} else {
-						nextState = (HashableGameState)turn.ApplyTurn(state.Clone());
-						stateGenerationTable.Add(key,nextState);
-					}
+				foreach(HashableGameState nextState in stateGenerationTable[state]) {
 					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,true);
 					if(value < worstValue) {
 						worstValue = value;
@@ -168,25 +164,15 @@ namespace GenericTurnBasedAI
 				return worstValue;
 			}
 		}
+		
 
-		void AddTurnGeneration(HashableGameState state, HashableTurn turn)
+		void AddStateGeneration(HashableGameState parent, HashableGameState child)
 		{
-
-			HashableTurn hTurn;
-			if(!turn.GetType().IsAssignableFrom(typeof(HashableTurn))) {
-				Debug.LogError("Wrong turn type");
-				throw new ArgumentException("Must generate a hashable turn");
-			} else
-				hTurn = (HashableTurn)turn;
-			if(!turnGenerationTable.ContainsKey(state))
-				turnGenerationTable.Add(state, new List<HashableTurn>());
-			turnGenerationTable[state].Add(hTurn);
-
-		}
-
-		void AddStateGeneration(HashableGameState parent, HashableTurn turn, HashableGameState child)
-		{
-			stateGenerationTable.Add(new StateTurnPair(parent,turn),child);
+			if(!stateGenerationTable.ContainsKey(parent)) {
+				//Debug.Log ("Adding new hash set for " + parent.GetHashCode());
+				stateGenerationTable.Add(parent, new HashSet<HashableGameState>());
+			}
+			stateGenerationTable[parent].Add(child);
 		}
 
 		public class StateTurnPair
