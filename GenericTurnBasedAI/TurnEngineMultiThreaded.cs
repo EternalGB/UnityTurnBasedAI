@@ -50,10 +50,10 @@ namespace GenericTurnBasedAI
 				List<ManualResetEvent> doneEvents = new List<ManualResetEvent>();
 				List<Minimax> threadWorkers = new List<Minimax>();
 
-				float bestValue = eval.maxValue;
+
 				foreach(Turn turn in rootTurns) {
 					ManualResetEvent waitHandle = new ManualResetEvent(false);
-					Minimax nextWorker = new Minimax(root.Clone(), turn, eval, maxDepth, false, waitHandle);
+					Minimax nextWorker = new Minimax(root.Clone(), turn, eval, depth, false, waitHandle);
 					threadWorkers.Add(nextWorker);
 					doneEvents.Add(waitHandle);
 					ThreadPool.QueueUserWorkItem(nextWorker.EvaluateState);
@@ -65,6 +65,7 @@ namespace GenericTurnBasedAI
 				else
 					timeOut = Timeout.Infinite;
 
+				float bestValue = eval.minValue;
 				if(WaitHandle.WaitAll(doneEvents.ToArray(),timeOut)) {
 					foreach(Minimax mm in threadWorkers) {
 						if(mm.Value >= bestValue) {
@@ -76,6 +77,9 @@ namespace GenericTurnBasedAI
 						}
 					}
 				} else {
+					foreach(Minimax mm in threadWorkers) {
+						mm.Stop();
+					}
 					exit = true;
 				}
 

@@ -45,7 +45,7 @@ namespace GenericTurnBasedAI
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
 				List<Turn> potentialTurns = new List<Turn>();
 				
-				float bestValue = eval.maxValue;
+				float bestValue = eval.minValue;
 				foreach(Turn turn in rootTurns) {
 					if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
 						exit = true;
@@ -54,7 +54,7 @@ namespace GenericTurnBasedAI
 					
 					
 					GameState nextState = turn.ApplyTurn(root.Clone());
-					float value = Minimax.AlphaBeta(nextState,eval,depth-1,eval.minValue,eval.maxValue,false);
+					float value = AlphaBeta(nextState,eval,depth-1,eval.minValue,eval.maxValue,false);
 					if(value >= bestValue) {
 						if(value > bestValue) {
 							bestValue = value;
@@ -75,6 +75,46 @@ namespace GenericTurnBasedAI
 			}
 			if(collectStats)
 				Stats.Log(depth,DateTime.Now.Subtract(startTime).Seconds);
+		}
+
+		public float AlphaBeta(GameState state, Evaluator eval, int depth, float alpha, float beta, bool ourTurn)
+		{
+			if(depth == 0 || state.IsTerminal()) {
+				return eval.Evaluate(state);
+			}
+			if(ourTurn) {
+				float bestValue = eval.minValue;
+				foreach(Turn turn in state.GeneratePossibleTurns()) {
+					GameState nextState = turn.ApplyTurn(state.Clone());
+					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,false);
+					if(value > bestValue) {
+						
+						bestValue = value;
+					}
+					value = Math.Max(value,bestValue);
+					alpha = Math.Max(alpha,value);
+					if(beta <= alpha) {
+						break;
+					}
+					
+				}
+				return bestValue;
+			} else {
+				float worstValue = eval.maxValue;
+				foreach(Turn turn in state.GeneratePossibleTurns()) {
+					GameState nextState = turn.ApplyTurn(state.Clone());
+					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,true);
+					if(value < worstValue) {
+						worstValue = value;
+					}
+					value = Math.Min(value,worstValue);
+					beta = Math.Min(beta,value);
+					if(beta <= alpha) {
+						break;
+					}
+				}
+				return worstValue;
+			}
 		}
 		
 
