@@ -52,7 +52,7 @@ namespace GenericTurnBasedAI
 			foreach(Turn turn in root.GeneratePossibleTurns()) {
 				rootTurns.Add(turn);
 
-				if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
+				if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
 					exit = true;
 					break;
 				}
@@ -74,11 +74,11 @@ namespace GenericTurnBasedAI
 				
 				float bestValue = eval.minValue;
 				foreach(Turn turn in rootTurns) {
-					if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
+					//Debug.Log("Searching turn " + turn.ToString() + " to depth " + depth);
+					if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
 						exit = true;
 						break;
 					}
-
 					HashableGameState nextState = turn.ApplyTurn(root.Clone()) as HashableGameState;
 					if(nextState == null) {
 						Debug.LogError("Apply turn did not produce a HashableGameState");

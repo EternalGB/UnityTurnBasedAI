@@ -1,11 +1,12 @@
 using System;
 using System.Threading;
+using UnityEngine;
 
 namespace GenericTurnBasedAI
 {
 
 
-	public class Minimax
+	public class MinimaxWorker
 	{
 
 		GameState rootState;
@@ -18,7 +19,7 @@ namespace GenericTurnBasedAI
 		{
 			get; private set;
 		}
-		bool stop;
+		bool stopped;
 
 		public float MinValue
 		{
@@ -30,7 +31,7 @@ namespace GenericTurnBasedAI
 			get {return eval.maxValue;}
 		}
 
-		public Minimax (GameState rootState, Turn firstTurn, Evaluator eval, int maxDepth, bool ourTurn, EventWaitHandle waitHandle)
+		public MinimaxWorker (GameState rootState, Turn firstTurn, Evaluator eval, int maxDepth, bool ourTurn, EventWaitHandle waitHandle)
 		{
 			this.rootState = rootState;
 			this.firstTurn = firstTurn;
@@ -38,13 +39,14 @@ namespace GenericTurnBasedAI
 			this.ourTurn = ourTurn;
 			this.eval = eval;
 			this.waitHandle = waitHandle;
-			stop = false;
+			stopped = true;
 		}
 		
 
 		public void EvaluateState(object threadState)
 		{
 			GameState state = firstTurn.ApplyTurn(rootState.Clone());
+			stopped = false;
 			Value = AlphaBeta(state,eval,maxDepth,eval.minValue,eval.maxValue,ourTurn);
 			waitHandle.Set();
 		}
@@ -57,7 +59,7 @@ namespace GenericTurnBasedAI
 			if(ourTurn) {
 				float bestValue = eval.minValue;
 				foreach(Turn turn in state.GeneratePossibleTurns()) {
-					if(stop)
+					if(stopped)
 						return eval.minValue;
 					GameState nextState = turn.ApplyTurn(state.Clone());
 					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,false);
@@ -76,7 +78,7 @@ namespace GenericTurnBasedAI
 			} else {
 				float worstValue = eval.maxValue;
 				foreach(Turn turn in state.GeneratePossibleTurns()) {
-					if(stop)
+					if(stopped)
 						return eval.minValue;
 					GameState nextState = turn.ApplyTurn(state.Clone());
 					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,true);
@@ -95,7 +97,7 @@ namespace GenericTurnBasedAI
 
 		public void Stop()
 		{
-			stop = true;
+			stopped = true;
 		}
 	}
 

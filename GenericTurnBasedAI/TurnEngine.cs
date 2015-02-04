@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
+
 namespace GenericTurnBasedAI
 {
 
@@ -22,7 +23,7 @@ namespace GenericTurnBasedAI
 				if(collectStats)
 					return _stats;
 				else 
-					throw new InvalidOperationException("Cannot retrieve stats if stat collection is disabled");
+					return new EngineStats();
 			} 
 			private set
 			{
@@ -31,6 +32,7 @@ namespace GenericTurnBasedAI
 		}
 
 		protected bool collectStats = false;
+		protected bool stopped = true;
 		
 		public delegate void TurnReady(Turn bestTurn);
 		public event TurnReady TurnReadyEvent;
@@ -38,8 +40,9 @@ namespace GenericTurnBasedAI
 
 		protected void InitEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
 		{
-			if(limit <= 0)
-				throw new ArgumentOutOfRangeException("limit - must be at least 1");
+			if(limit <= 0) {
+				limit = 1;
+			}
 			this.timeLimited = timeLimited;
 			this.collectStats = collectStats;
 			if(timeLimited) {
@@ -53,8 +56,6 @@ namespace GenericTurnBasedAI
 
 			this.eval = eval;
 
-
-
 			rando = new System.Random((int)DateTime.Now.Ticks);
 		}
 
@@ -62,12 +63,16 @@ namespace GenericTurnBasedAI
 		{
 			bestTurn = null;
 			Thread thread = new Thread(TurnSearchDelegate);
+			stopped = false;
 			thread.Start(state);
 			while(thread.IsAlive) {
+				if(stopped)
+					thread.Abort();
 				yield return 0;
 			}
 			if(TurnReadyEvent != null)
 				TurnReadyEvent(bestTurn);
+			stopped = true;
 		}
 
 		protected abstract void TurnSearchDelegate(object state);
@@ -88,7 +93,12 @@ namespace GenericTurnBasedAI
 			} else
 				return null;
 		}
-		
+
+		public virtual void Stop()
+		{
+			stopped = true;
+		}
+
 	}
 
 }

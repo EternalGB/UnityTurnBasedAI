@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-
+using UnityEngine;
 
 namespace GenericTurnBasedAI
 {
@@ -17,6 +17,7 @@ namespace GenericTurnBasedAI
 	
 		protected override void TurnSearchDelegate(object state)
 		{
+
 			DateTime startTime = new DateTime(DateTime.Now.Ticks);
 			bool exit = false;
 			List<Turn> results = null;
@@ -28,11 +29,11 @@ namespace GenericTurnBasedAI
 			//precompute the first level so we don't have to every time
 			List<Turn> rootTurns = new List<Turn>();
 			foreach(Turn turn in root.GeneratePossibleTurns()) {
-				if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
+				rootTurns.Add(turn);
+				if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
 					exit = true;
 					break;
 				}
-				rootTurns.Add(turn);
 			}
 			//this is so we can bail out without evaluating any turns
 			results = rootTurns;
@@ -43,11 +44,14 @@ namespace GenericTurnBasedAI
 			
 			int depth;
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
+
 				List<Turn> potentialTurns = new List<Turn>();
 				
 				float bestValue = eval.minValue;
 				foreach(Turn turn in rootTurns) {
-					if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
+
+					//Debug.Log("Searching turn " + turn.ToString() + " to depth " + depth);
+					if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
 						exit = true;
 						break;
 					}
