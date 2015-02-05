@@ -28,8 +28,10 @@ namespace GenericTurnBasedAI
 			
 			//precompute the first level so we don't have to every time
 			List<Turn> rootTurns = new List<Turn>();
+			List<TurnValuePair> rootValues = new List<TurnValuePair>();
 			foreach(Turn turn in root.GeneratePossibleTurns()) {
 				rootTurns.Add(turn);
+				rootValues.Add(new TurnValuePair(turn,eval.minValue));
 				if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
 					exit = true;
 					break;
@@ -44,11 +46,11 @@ namespace GenericTurnBasedAI
 			
 			int depth;
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
-
+				rootValues.Sort();
 				List<Turn> potentialTurns = new List<Turn>();
-				
 				float bestValue = eval.minValue;
-				foreach(Turn turn in rootTurns) {
+				for(int i = 0; i < rootTurns.Count; i++) {
+					Turn turn = rootValues[i].turn;
 
 					//Debug.Log("Searching turn " + turn.ToString() + " to depth " + depth);
 					if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
@@ -66,7 +68,7 @@ namespace GenericTurnBasedAI
 						}
 						potentialTurns.Add(turn);
 					}
-					
+					rootValues[i].value = value;
 				}
 				//only overwrite the results if we haven't aborted mid search
 				if(!exit) {
@@ -120,7 +122,32 @@ namespace GenericTurnBasedAI
 				return worstValue;
 			}
 		}
-		
+
+		public class TurnValuePair : IComparable<TurnValuePair>
+		{
+			public Turn turn;
+			public float value;
+
+			public TurnValuePair (Turn turn, float value)
+			{
+				this.turn = turn;
+				this.value = value;
+			}
+
+			public int CompareTo (TurnValuePair other)
+			{
+				if(other == null) return 1;
+
+				float diff = other.value - value;
+				if(diff < 0)
+					return -1;
+				else if(diff > 0)
+					return 1;
+				else
+					return 0;
+			}
+			
+		}
 
 	}
 

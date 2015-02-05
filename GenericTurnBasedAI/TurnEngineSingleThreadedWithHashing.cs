@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
 using UnityEngine;
 
 namespace GenericTurnBasedAI
@@ -19,14 +20,7 @@ namespace GenericTurnBasedAI
 			InitEngine(eval,limit,timeLimited,collectStats);
 			InitHashing();
 		}
-
-		public TurnEngineSingleThreadedWithHashing(Evaluator eval, int limit, bool timeLimited, string stateTablePath, string evalTablePath, bool collectStats = false)
-		{
-			InitEngine(eval,limit,timeLimited,collectStats);
-			InitHashing();
-			//TODO saving and loading saved tables to file
-		}
-
+		
 		void InitHashing()
 		{
 			stateGenerationTable = new Dictionary<HashableGameState, HashSet<HashableGameState>>(tableSize);
