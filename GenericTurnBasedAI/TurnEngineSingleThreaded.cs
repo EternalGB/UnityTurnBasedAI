@@ -155,45 +155,7 @@ namespace GenericTurnBasedAI
 				
 			}
 		}
-
-
-		public class TurnValuePair : IComparable<TurnValuePair>
-		{
-			public Turn turn;
-			public float value;
-
-			public TurnValuePair (Turn turn, float value)
-			{
-				this.turn = turn;
-				this.value = value;
-			}
-
-			public int CompareTo (TurnValuePair other)
-			{
-				if(other == null) return 1;
-				//we have to do some additional checks because of possible overflows
-				if(other.value == value)
-					return 0;
-
-				if(value == float.MinValue)
-					return -1;
-				if(other.value == float.MinValue)
-					return 1;
-				if(value == float.MaxValue)
-					return 1;
-				if(other.value == float.MaxValue)
-					return -1;
-				float diff = other.value - value;
-				if(diff < 0)
-					return -1;
-				else if(diff > 0)
-					return 1;
-				else
-					return 0;
-			}
-			
-		}
-
+		
 		public class Node 
 		{
 			public GameState state;
