@@ -11,9 +11,17 @@ namespace GenericTurnBasedAI
 
 		DateTime startTime;
 
+		public TurnEngineSingleThreaded(Evaluator eval, int timeLimit, int depthLimit, bool collectStats = false)
+		{
+			InitEngine(eval,timeLimit,depthLimit,true,collectStats);
+		}
+
 		public TurnEngineSingleThreaded(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{
-			InitEngine(eval,limit,timeLimited,collectStats);
+			if(timeLimited)
+				InitEngine(eval,limit,int.MaxValue,timeLimited,collectStats);
+			else
+				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
 		}
 	
 		protected override void TurnSearchDelegate(object state)

@@ -13,21 +13,25 @@ namespace GenericTurnBasedAI
 		List<ManualResetEvent> lastDoneEvents;
 		List<MinimaxWorker> lastThreadWorkers;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="GenericTurnBasedAI.TurnEngineMultiThreaded"/> class.
-		/// </summary>
-		/// <param name="eval">Eval.</param>
-		/// <param name="limit">Limit.</param>
-		/// <param name="timeLimited">If set to <c>true</c> time limited.</param>
-		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
+		public TurnEngineMultiThreaded(Evaluator eval, int timeLimit, int depthLimit, bool collectStats = false)
+		{
+			InitEngine(eval,timeLimit, depthLimit, true,collectStats);
+		}
+
 		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{
-			InitEngine(eval,limit,timeLimited,collectStats);
+			if(timeLimited)
+				InitEngine(eval,limit,int.MaxValue,timeLimited,collectStats);
+			else
+				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
 		}
 
 		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, int minThreads, int maxThreads, bool collectStats = false)
 		{
-			InitEngine(eval,limit,timeLimited,collectStats);
+			if(timeLimited)
+				InitEngine(eval,limit,int.MaxValue,timeLimited,collectStats);
+			else
+				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
 			//this.maxThreads = maxThreads;
 			ThreadPool.SetMinThreads(minThreads,minThreads);
 			ThreadPool.SetMaxThreads(maxThreads,maxThreads);

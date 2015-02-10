@@ -36,20 +36,21 @@ namespace GenericTurnBasedAI
 		
 		public delegate void TurnReady(Turn bestTurn);
 		public event TurnReady TurnReadyEvent;
-		
 
-		protected void InitEngine(Evaluator eval, int limit, bool timeLimited, bool collectStats)
+
+
+		protected void InitEngine(Evaluator eval, int timeLimit, int depthLimit, bool timeLimited, bool collectStats)
 		{
-			if(limit <= 0) {
-				limit = 1;
+			if(timeLimit <= 0) {
+				timeLimit = 1;
+			}
+			if(depthLimit <= 0) {
+				depthLimit = 1;
 			}
 			this.timeLimited = timeLimited;
 			this.collectStats = collectStats;
-			if(timeLimited) {
-				this.maxTime = limit;
-				maxDepth = int.MaxValue;
-			} else
-				this.maxDepth = limit;
+			this.maxTime = timeLimit;
+			this.maxDepth = depthLimit;
 			if(collectStats) {
 				Stats = new EngineStats();
 			}

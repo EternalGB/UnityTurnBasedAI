@@ -17,7 +17,10 @@ namespace GenericTurnBasedAI
 
 		public TurnEngineSingleThreadedWithHashing(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{
-			InitEngine(eval,limit,timeLimited,collectStats);
+			if(timeLimited)
+				InitEngine(eval,limit,int.MaxValue,timeLimited,collectStats);
+			else
+				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
 			InitHashing();
 		}
 		
