@@ -54,7 +54,7 @@ namespace GenericTurnBasedAI
 						potentialTurns.Add(rootNode.children[i].generatedBy);
 					}
 				}
-
+				//Debug.Log ("Best value found at depth " + depth + " : " + bestValue);
 				//only overwrite the results if we haven't aborted mid search
 				if(!exit) {
 					results = potentialTurns;
@@ -128,7 +128,7 @@ namespace GenericTurnBasedAI
 					current.children.Sort(Node.AscendingNodeSort);
 					float worstValue = eval.maxValue;
 					foreach(Node child in current.children) {
-						float value = AlphaBeta(child,eval,depth-1,alpha,beta,false);
+						float value = AlphaBeta(child,eval,depth-1,alpha,beta,true);
 						if(value < worstValue) {
 							worstValue = value;
 							current.value = value;
