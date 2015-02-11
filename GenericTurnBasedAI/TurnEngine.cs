@@ -31,6 +31,15 @@ namespace GenericTurnBasedAI
 			}
 		}
 
+		protected DateTime startTime;
+		protected bool Exit
+		{
+			get
+			{
+				return (timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped;
+			}
+		}
+
 		protected bool collectStats = false;
 		protected bool stopped = true;
 		
@@ -65,6 +74,7 @@ namespace GenericTurnBasedAI
 			bestTurn = null;
 			Thread thread = new Thread(TurnSearchDelegate);
 			stopped = false;
+			startTime = new DateTime(DateTime.Now.Ticks);
 			thread.Start(state);
 			while(thread.IsAlive) {
 				if(stopped)

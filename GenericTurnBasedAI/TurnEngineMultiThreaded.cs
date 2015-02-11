@@ -49,7 +49,7 @@ namespace GenericTurnBasedAI
 			List<Turn> rootTurns = new List<Turn>();
 			foreach(Turn turn in root.GeneratePossibleTurns()) {
 				rootTurns.Add(turn);
-				if(timeLimited && results != null && DateTime.Now.Subtract(startTime).Seconds >= maxTime) {
+				if(Exit) {
 					exit = true;
 					break;
 				}

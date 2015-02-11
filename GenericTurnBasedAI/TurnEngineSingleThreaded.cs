@@ -26,7 +26,7 @@ namespace GenericTurnBasedAI
 		protected override void TurnSearchDelegate(object state)
 		{
 			
-			DateTime startTime = new DateTime(DateTime.Now.Ticks);
+
 			bool exit = false;
 			List<Turn> results = null;
 			float resultsValue = eval.minValue;
@@ -38,7 +38,7 @@ namespace GenericTurnBasedAI
 			List<Turn> rootTurns = new List<Turn>();
 			foreach(Turn turn in root.GeneratePossibleTurns()) {
 				rootTurns.Add(turn);
-				if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
+				if(Exit) {
 					exit = true;
 					break;
 				}
@@ -59,7 +59,7 @@ namespace GenericTurnBasedAI
 				foreach(Turn turn in rootTurns) {
 					
 					//Debug.Log("Searching turn " + turn.ToString() + " to depth " + depth);
-					if((timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped) {
+					if(Exit) {
 						exit = true;
 						break;
 					}
@@ -97,6 +97,8 @@ namespace GenericTurnBasedAI
 			if(ourTurn) {
 				float bestValue = eval.minValue;
 				foreach(Turn turn in state.GeneratePossibleTurns()) {
+					if(Exit)
+						break;
 					GameState nextState = turn.ApplyTurn(state.Clone());
 					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,false);
 					if(value > bestValue) {
@@ -113,6 +115,8 @@ namespace GenericTurnBasedAI
 			} else {
 				float worstValue = eval.maxValue;
 				foreach(Turn turn in state.GeneratePossibleTurns()) {
+					if(Exit)
+						break;
 					GameState nextState = turn.ApplyTurn(state.Clone());
 					float value = AlphaBeta(nextState,eval,depth-1,alpha,beta,true);
 					if(value < worstValue) {
