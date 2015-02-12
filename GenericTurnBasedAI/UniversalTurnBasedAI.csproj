@@ -48,8 +48,6 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Turn.cs" />
     <Compile Include="TurnEngine.cs" />
-    <Compile Include="HashableGameState.cs" />
-    <Compile Include="HashableTurn.cs" />
     <Compile Include="TurnEngineMultiThreaded.cs" />
     <Compile Include="MinimaxWorker.cs" />
     <Compile Include="TurnEngineSingleThreaded.cs" />

@@ -6,16 +6,30 @@ using System.Threading;
 namespace UniversalTurnBasedAI
 {
 
+	/// <summary>
+	/// The super-class for all Turn Engines. Provides an entry point for Unity with <see cref="GetNextTurn"/>  which can be used
+	/// in a familiar coroutine pattern. Defines attributes common to all Turn Engines such as depth and time
+	/// limits. Also provides the <see cref="TurnReadyEvent"/>  which is triggered after a turn search has been completed and
+	/// returns the best turn found.
+	/// 
+	/// <seealso cref="GameState"/>
+	/// <seealso cref="Turn"/>
+	/// <seealso cref="Evaluator"/>
+	/// </summary>
 	public abstract class TurnEngine
 	{
 		
 		protected int maxDepth;
-		protected Evaluator eval;
-		protected Turn bestTurn;
-		protected bool timeLimited = false;
 		protected int maxTime;
+		protected bool timeLimited = false;
+		protected Evaluator eval;
 		protected System.Random rando;
 		EngineStats _stats;
+		/// <summary>
+		/// Property for accessing stats if there were collect.
+		/// </summary>
+		/// <value>If stat collection enabled: returns any collected statisics collected since the last 
+		/// ResetStatisticsLog call otherwise returns a new, empty EngineStats</value>
 		public EngineStats Stats
 		{
 			get
@@ -42,12 +56,25 @@ namespace UniversalTurnBasedAI
 
 		protected bool collectStats = false;
 		protected bool stopped = true;
-		
+
+		protected Turn bestTurn;
+
 		public delegate void TurnReady(Turn bestTurn);
+		/// <summary>
+		/// Triggered after <see cref="GetNextTurn"/> has been called and the found turn is ready to be returned.
+		/// <see cref="bestTurn"/>  will be the best turn discovered by the engine
+		/// </summary>
 		public event TurnReady TurnReadyEvent;
 
-
-
+		/// <summary>
+		/// Initialises the common engine elements
+		/// </summary>
+		/// <param name="eval">The class used to evaluate GameStates searched by this engine</param>
+		/// <param name="timeLimit">The maximum time allowed for search, in seconds</param>
+		/// <param name="depthLimit">The maximum depth to search in the GameState search tree. Also called "ply"</param>
+		/// <param name="timeLimited">If set to <c>true</c> Search will end after the set timeLimit, otherwise
+		/// search will complete to the set depthLimit</param>
+		/// <param name="collectStats">If set to <c>true</c> collect statistics.</param>
 		protected void InitEngine(Evaluator eval, int timeLimit, int depthLimit, bool timeLimited, bool collectStats)
 		{
 			if(timeLimit <= 0) {
@@ -69,6 +96,18 @@ namespace UniversalTurnBasedAI
 			rando = new System.Random((int)DateTime.Now.Ticks);
 		}
 
+		/// <summary>
+		/// The entry point to the engine. Starts a new thread to run the search in and waits on it. Once the search
+		/// is completed or timed out, calls the <see cref="TurnReadyEvent"/> to return the best turn found.
+		/// 
+		/// <example>
+		/// Typical usage from Unity is:
+		/// <code>
+		/// StartCoroutine(engine.GetNextTurn(state));
+		/// </code>
+		/// </example>
+		/// </summary>
+		/// <param name="state">State.</param>
 		public System.Collections.IEnumerator GetNextTurn(GameState state) 
 		{
 			bestTurn = null;
