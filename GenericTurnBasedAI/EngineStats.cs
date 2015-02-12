@@ -1,5 +1,8 @@
 namespace UniversalTurnBasedAI
 {
+	/// <summary>
+	/// Used to collect stastics from the engine
+	/// </summary>
 	public class EngineStats 
 	{
 		int iterations;
@@ -8,8 +11,8 @@ namespace UniversalTurnBasedAI
 		int maxDepth = int.MinValue;
 		float totalDepth;
 		
-		int minTime = int.MaxValue;
-		int maxTime = int.MinValue;
+		float minTime = float.MaxValue;
+		float maxTime = float.MinValue;
 		float totalTime;
 		
 		public float AverageDepth
@@ -22,7 +25,7 @@ namespace UniversalTurnBasedAI
 			get {return totalTime/iterations;}
 		}
 		
-		internal void Log(int depth, int time)
+		internal void Log(int depth, float time)
 		{
 			if(depth < minDepth)
 				minDepth = depth;

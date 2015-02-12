@@ -124,7 +124,7 @@ namespace UniversalTurnBasedAI
 				bestTurn = GetRandomElement<Turn>(results);
 			}
 			if(collectStats)
-				Stats.Log(depth,DateTime.Now.Subtract(startTime).Seconds);
+				Stats.Log(depth,(float)DateTime.Now.Subtract(startTime).TotalSeconds);
 		}
 
 		/// <summary>
