@@ -25,6 +25,31 @@ namespace UniversalTurnBasedAI
 		List<MinimaxWorker> lastThreadWorkers;
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class with
+		/// a time limit. Once the time limit has been reached the best turn found so far will be <paramref name="bestTurn"/>
+		/// </summary>
+		/// <param name="eval">The Evaluator</param>
+		/// <param name="timeLimit">The time limit</param>
+		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
+		public TurnEngineMultiThreaded (Evaluator eval, float timeLimit, bool collectStats = false)
+		{
+			InitEngine(eval,timeLimit,int.MaxValue,true,collectStats);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class with
+		/// a depth limit. Searches the entire GameState tree up to the specific depth. The best turn found after the
+		/// search will be <paramref name="bestTurn"/>.
+		/// </summary>
+		/// <param name="eval">Eval.</param>
+		/// <param name="depthLimit">Depth limit.</param>
+		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
+		public TurnEngineMultiThreaded (Evaluator eval, int depthLimit, bool collectStats = false)
+		{
+			InitEngine(eval,float.MaxValue,depthLimit,false,collectStats);
+		}
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
 		/// </summary>
 		/// <param name="eval">The <see cref="Evaluator"/> to use</param>
@@ -35,45 +60,7 @@ namespace UniversalTurnBasedAI
 		{
 			InitEngine(eval,timeLimit, depthLimit, true,collectStats);
 		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
-		/// </summary>
-		/// <param name="eval">Eval.</param>
-		/// <param name="limit">Time or depth limit as per <paramref name="timeLimited"/></param>
-		/// <param name="timeLimited">If set to <c>true</c> then <paramref name="limit"/> indicates the time limit in seconds,
-		/// otherwise <paramref name="limit"/> is the maximum depth to search.</param>
-		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
-		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
-		{
-			if(timeLimited)
-				InitEngine(eval,limit,int.MaxValue,timeLimited,collectStats);
-			else
-				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
-		/// </summary>
-		/// <param name="eval">Eval.</param>
-		/// <param name="limit">Time or depth limit as per <paramref name="timeLimited"/></param>
-		/// <param name="timeLimited">If set to <c>true</c> then <paramref name="limit"/> indicates the time limit in seconds,
-		/// otherwise <paramref name="limit"/> is the maximum depth to search.</param>
-		/// <param name="minThreads"><see cref="ThreadPool.SetMinThreads"/></param>
-		/// <param name="minThreads"><see cref="ThreadPool.SetMaxThreads"/></param>
-		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
-		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, int minThreads, int maxThreads, bool collectStats = false)
-		{
-			if(timeLimited)
-				InitEngine(eval,limit,int.MaxValue,timeLimited,collectStats);
-			else
-				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
-			//this.maxThreads = maxThreads;
-
-			ThreadPool.SetMinThreads(minThreads,minThreads);
-			ThreadPool.SetMaxThreads(maxThreads,maxThreads);
-		}
-
+		
 		/// <summary>
 		/// A wrapper for the Minimax algorithm. Initialises the first branch of turns so that
 		/// they can be given values and the best possible returned. Always generates at least one

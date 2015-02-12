@@ -21,7 +21,7 @@ namespace UniversalTurnBasedAI
 	{
 		
 		protected int maxDepth;
-		protected int maxTime;
+		protected float maxTime;
 		protected bool timeLimited = false;
 		protected Evaluator eval;
 		protected System.Random rando;
@@ -51,7 +51,7 @@ namespace UniversalTurnBasedAI
 		{
 			get
 			{
-				return (timeLimited && DateTime.Now.Subtract(startTime).Seconds >= maxTime) || stopped;
+				return (timeLimited && DateTime.Now.Subtract(startTime).TotalSeconds >= maxTime) || stopped;
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace UniversalTurnBasedAI
 		/// <param name="timeLimited">If set to <c>true</c> Search will end after the set timeLimit, otherwise
 		/// search will complete to the set depthLimit</param>
 		/// <param name="collectStats">If set to <c>true</c> collect statistics.</param>
-		protected void InitEngine(Evaluator eval, int timeLimit, int depthLimit, bool timeLimited, bool collectStats)
+		protected void InitEngine(Evaluator eval, float timeLimit, int depthLimit, bool timeLimited, bool collectStats)
 		{
 
 			if(timeLimit <= 0) {
