@@ -32,8 +32,9 @@ namespace UniversalTurnBasedAI
 		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineSingleThreaded"/> class.
 		/// </summary>
 		/// <param name="eval">Eval.</param>
-		/// <param name="limit">Limit.</param>
-		/// <param name="timeLimited">If set to <c>true</c> then <paramref name="limit"/> indicates .</param>
+		/// <param name="limit">Time or depth limit as per <paramref name="timeLimited"/></param>
+		/// <param name="timeLimited">If set to <c>true</c> then <paramref name="limit"/> indicates the time limit in seconds,
+		/// otherwise <paramref name="limit"/> is the maximum depth to search.</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineSingleThreaded (Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{

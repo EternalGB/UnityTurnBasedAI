@@ -133,7 +133,7 @@ namespace UniversalTurnBasedAI
 		/// <param name="action">The action to run</param>
 		/// <param name="arg">The action's arguments</param>
 		/// <param name="exceptionHandler">A handler for the exceptions</param>
-		void ExecuteAndCatch(Action<object> action, object arg, Action<Exception> exceptionHandler)
+		protected void ExecuteAndCatch(Action<object> action, object arg, Action<Exception> exceptionHandler)
 		{
 			try
 			{
@@ -149,7 +149,7 @@ namespace UniversalTurnBasedAI
 		/// Writes .NET exceptions to the Unity Debug Log
 		/// </summary>
 		/// <param name="ex">The exception</param>
-		void ExceptionHandler(Exception ex)
+		protected void ExceptionHandler(Exception ex)
 		{
 			Debug.LogError (ex.Message);
 		}

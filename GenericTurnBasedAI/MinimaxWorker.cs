@@ -21,16 +21,6 @@ namespace UniversalTurnBasedAI
 		}
 		bool stopped;
 
-		public float MinValue
-		{
-			get {return eval.minValue;}
-		}
-
-		public float MaxValue
-		{
-			get {return eval.maxValue;}
-		}
-
 		public MinimaxWorker (GameState rootState, Turn firstTurn, Evaluator eval, int maxDepth, bool ourTurn, EventWaitHandle waitHandle)
 		{
 			this.rootState = rootState;

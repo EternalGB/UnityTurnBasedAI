@@ -11,6 +11,10 @@ namespace UniversalTurnBasedAI
 	/// A multi-threaded implementation of <see cref="TurnEngine"/>. Uses the same search algorithm as <see cref="TurnEngineSingleThreaded"/>
 	/// but runs each initial branch in a separate thread.
 	/// 
+	/// This implementation may not be significantly faster than using <see cref="TurnEngineSingleThreaded"/> due to the overhead
+	/// of managing multiple threads. May see an improvement if your GameState search tree is extremely wide i.e. in each state
+	/// there is a very large number of possible moves to make.
+	/// 
 	/// <seealso cref="TurnEngine"/>
 	/// <seealso cref="TurnEngineSingleThreaded"/>
 	/// </summary>
@@ -20,11 +24,26 @@ namespace UniversalTurnBasedAI
 		List<ManualResetEvent> lastDoneEvents;
 		List<MinimaxWorker> lastThreadWorkers;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
+		/// </summary>
+		/// <param name="eval">The <see cref="Evaluator"/> to use</param>
+		/// <param name="timeLimit">Time limit in seconds. Must be at least 1</param>
+		/// <param name="depthLimit">Depth limit or maximum "ply". Must be at least 1</param>
+		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineMultiThreaded(Evaluator eval, int timeLimit, int depthLimit, bool collectStats = false)
 		{
 			InitEngine(eval,timeLimit, depthLimit, true,collectStats);
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
+		/// </summary>
+		/// <param name="eval">Eval.</param>
+		/// <param name="limit">Time or depth limit as per <paramref name="timeLimited"/></param>
+		/// <param name="timeLimited">If set to <c>true</c> then <paramref name="limit"/> indicates the time limit in seconds,
+		/// otherwise <paramref name="limit"/> is the maximum depth to search.</param>
+		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, bool collectStats = false)
 		{
 			if(timeLimited)
@@ -33,6 +52,16 @@ namespace UniversalTurnBasedAI
 				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
+		/// </summary>
+		/// <param name="eval">Eval.</param>
+		/// <param name="limit">Time or depth limit as per <paramref name="timeLimited"/></param>
+		/// <param name="timeLimited">If set to <c>true</c> then <paramref name="limit"/> indicates the time limit in seconds,
+		/// otherwise <paramref name="limit"/> is the maximum depth to search.</param>
+		/// <param name="minThreads"><see cref="ThreadPool.SetMinThreads"/></param>
+		/// <param name="minThreads"><see cref="ThreadPool.SetMaxThreads"/></param>
+		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineMultiThreaded(Evaluator eval, int limit, bool timeLimited, int minThreads, int maxThreads, bool collectStats = false)
 		{
 			if(timeLimited)
@@ -40,10 +69,23 @@ namespace UniversalTurnBasedAI
 			else
 				InitEngine(eval,int.MaxValue,limit,timeLimited,collectStats);
 			//this.maxThreads = maxThreads;
+
 			ThreadPool.SetMinThreads(minThreads,minThreads);
 			ThreadPool.SetMaxThreads(maxThreads,maxThreads);
 		}
 
+		/// <summary>
+		/// A wrapper for the Minimax algorithm. Initialises the first branch of turns so that
+		/// they can be given values and the best possible returned. Always generates at least one
+		/// possible turns so that at least some sensible result can be returned. When the search is
+		/// completed or timed out <see cref="bestTurn"/> will be assigned to the best found turn.
+		/// 
+		/// For each initial turn this created a new <see cref="MinimaxWorker"/> is created and
+		/// added to a <see cref="ThreadPool"/>. Then it waits for each thread to finish or a 
+		/// time out.
+		/// <seealso cref="MinimaxWorker"/>
+		/// </summary>
+		/// <param name="state">The starting state</param>
 		protected override void TurnSearchDelegate(object state)
 		{
 			DateTime startTime = new DateTime(DateTime.Now.Ticks);
@@ -87,7 +129,7 @@ namespace UniversalTurnBasedAI
 					MinimaxWorker nextWorker = new MinimaxWorker(root.Clone(), turn, eval, depth, false, waitHandle);
 					threadWorkers.Add(nextWorker);
 					doneEvents.Add(waitHandle);
-					ThreadPool.QueueUserWorkItem(nextWorker.EvaluateState, turn);
+					ThreadPool.QueueUserWorkItem((object threadState) => ExecuteAndCatch(nextWorker.EvaluateState, turn, ExceptionHandler));
 				}
 
 				lastThreadWorkers = threadWorkers;
@@ -101,6 +143,7 @@ namespace UniversalTurnBasedAI
 								bestValue = mm.Value;
 								potentialTurns.Clear();
 							}
+
 							potentialTurns.Add(mm.firstTurn);
 						}
 					}
@@ -126,6 +169,8 @@ namespace UniversalTurnBasedAI
 			if(collectStats)
 				Stats.Log(depth,DateTime.Now.Subtract(startTime).Seconds);
 		}
+
+
 
 		public override void Stop ()
 		{
