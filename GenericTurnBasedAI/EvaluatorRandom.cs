@@ -1,6 +1,6 @@
 using System;
 
-namespace GenericTurnBasedAI
+namespace UniversalTurnBasedAI
 {
 	public class EvaluatorRandom : Evaluator
 	{

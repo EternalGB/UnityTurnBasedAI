@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace GenericTurnBasedAI
+namespace UniversalTurnBasedAI
 {
 	
 	public class TurnEngineMultiThreaded : TurnEngine

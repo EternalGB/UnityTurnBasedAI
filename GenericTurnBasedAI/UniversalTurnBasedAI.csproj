@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C17D0A95-9012-4934-B3A3-18E0342D106B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>GenericTurnBasedAI</RootNamespace>
-    <AssemblyName>GenericTurnBasedAI</AssemblyName>
+    <RootNamespace>UniversalTurnBasedAI</RootNamespace>
+    <AssemblyName>UniversalTurnBasedAI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

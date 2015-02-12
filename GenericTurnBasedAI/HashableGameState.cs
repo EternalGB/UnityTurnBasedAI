@@ -1,4 +1,4 @@
-namespace GenericTurnBasedAI
+namespace UniversalTurnBasedAI
 {
 	public abstract class HashableGameState : GameState
 	{

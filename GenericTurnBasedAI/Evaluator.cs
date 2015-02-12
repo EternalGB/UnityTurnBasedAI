@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace GenericTurnBasedAI
+namespace UniversalTurnBasedAI
 {
 	public abstract class Evaluator 
 	{

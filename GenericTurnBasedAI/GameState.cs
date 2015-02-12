@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GenericTurnBasedAI
+namespace UniversalTurnBasedAI
 {
 	public abstract class GameState
 	{

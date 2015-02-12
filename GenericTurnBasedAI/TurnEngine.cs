@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 
 
-namespace GenericTurnBasedAI
+namespace UniversalTurnBasedAI
 {
 
 	public abstract class TurnEngine
