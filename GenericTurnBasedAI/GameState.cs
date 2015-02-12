@@ -30,7 +30,9 @@ namespace UniversalTurnBasedAI
 		/// allows turns to be generated and search lazily. The efficiency of generating each turn
 		/// effects the performance of the <see cref="TurnEngine"/>. You will only get the benefits
 		/// of lazy evaluation if you yield each turn after generating them. Generating all turns and
-		/// then iterating through them will negatively effect the performance of the <see cref="TurnEngine"/>. 
+		/// then iterating through them will negatively effect the performance of the <see cref="TurnEngine"/>.
+		/// 
+		/// This method should only produce turns that are valid for this particular GameState
 		/// </summary>
 		/// <returns>The possible turns.</returns>
 		public abstract IEnumerable<Turn> GeneratePossibleTurns();

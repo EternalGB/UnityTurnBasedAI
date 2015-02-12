@@ -6,7 +6,14 @@ using UnityEngine;
 
 namespace UniversalTurnBasedAI
 {
-	
+
+	/// <summary>
+	/// A multi-threaded implementation of <see cref="TurnEngine"/>. Uses the same search algorithm as <see cref="TurnEngineSingleThreaded"/>
+	/// but runs each initial branch in a separate thread.
+	/// 
+	/// <seealso cref="TurnEngine"/>
+	/// <seealso cref="TurnEngineSingleThreaded"/>
+	/// </summary>
 	public class TurnEngineMultiThreaded : TurnEngine
 	{
 

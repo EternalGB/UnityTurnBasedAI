@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-
+using UnityEngine;
 
 namespace UniversalTurnBasedAI
 {
 
 	/// <summary>
-	/// The super-class for all Turn Engines. Provides an entry point for Unity with <see cref="GetNextTurn"/>  which can be used
+	/// The super-class for all Turn Engines. Implementations of this class control the search for the best <see cref="Turn"/>.
+	/// Provides an entry point for Unity with <see cref="GetNextTurn"/> which can be used
 	/// in a familiar coroutine pattern. Defines attributes common to all Turn Engines such as depth and time
 	/// limits. Also provides the <see cref="TurnReadyEvent"/>  which is triggered after a turn search has been completed and
 	/// returns the best turn found.
@@ -67,21 +68,22 @@ namespace UniversalTurnBasedAI
 		public event TurnReady TurnReadyEvent;
 
 		/// <summary>
-		/// Initialises the common engine elements
+		/// Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1
 		/// </summary>
 		/// <param name="eval">The class used to evaluate GameStates searched by this engine</param>
-		/// <param name="timeLimit">The maximum time allowed for search, in seconds</param>
-		/// <param name="depthLimit">The maximum depth to search in the GameState search tree. Also called "ply"</param>
+		/// <param name="timeLimit">The maximum time allowed for search, in seconds. Must be at least 1</param>
+		/// <param name="depthLimit">The maximum depth to search in the GameState search tree. Also called "ply". Must be at least 1</param>
 		/// <param name="timeLimited">If set to <c>true</c> Search will end after the set timeLimit, otherwise
 		/// search will complete to the set depthLimit</param>
 		/// <param name="collectStats">If set to <c>true</c> collect statistics.</param>
 		protected void InitEngine(Evaluator eval, int timeLimit, int depthLimit, bool timeLimited, bool collectStats)
 		{
+
 			if(timeLimit <= 0) {
-				timeLimit = 1;
+				throw new ArgumentOutOfRangeException("timeLimit","Must be at least 1");
 			}
 			if(depthLimit <= 0) {
-				depthLimit = 1;
+				throw new ArgumentOutOfRangeException("depthLimit","Must be at least 1");
 			}
 			this.timeLimited = timeLimited;
 			this.collectStats = collectStats;
@@ -111,7 +113,7 @@ namespace UniversalTurnBasedAI
 		public System.Collections.IEnumerator GetNextTurn(GameState state) 
 		{
 			bestTurn = null;
-			Thread thread = new Thread(TurnSearchDelegate);
+			Thread thread = new Thread(() => ExecuteAndCatch(TurnSearchDelegate, state, ExceptionHandler));
 			stopped = false;
 			startTime = new DateTime(DateTime.Now.Ticks);
 			thread.Start(state);
@@ -123,6 +125,33 @@ namespace UniversalTurnBasedAI
 			if(TurnReadyEvent != null)
 				TurnReadyEvent(bestTurn);
 			stopped = true;
+		}
+
+		/// <summary>
+		/// Wrapper for catching exceptions from another thread
+		/// </summary>
+		/// <param name="action">The action to run</param>
+		/// <param name="arg">The action's arguments</param>
+		/// <param name="exceptionHandler">A handler for the exceptions</param>
+		void ExecuteAndCatch(Action<object> action, object arg, Action<Exception> exceptionHandler)
+		{
+			try
+			{
+				action(arg);
+			}
+			catch (Exception ex)
+			{
+				exceptionHandler(ex);
+			}
+		}
+
+		/// <summary>
+		/// Writes .NET exceptions to the Unity Debug Log
+		/// </summary>
+		/// <param name="ex">The exception</param>
+		void ExceptionHandler(Exception ex)
+		{
+			Debug.LogError (ex.Message);
 		}
 
 		protected abstract void TurnSearchDelegate(object state);
