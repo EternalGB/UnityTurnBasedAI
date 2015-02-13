@@ -1,0 +1,75 @@
+\hypertarget{class_universal_turn_based_a_i_1_1_game_state}{}\section{Universal\+Turn\+Based\+A\+I.\+Game\+State Class Reference}
+\label{class_universal_turn_based_a_i_1_1_game_state}\index{Universal\+Turn\+Based\+A\+I.\+Game\+State@{Universal\+Turn\+Based\+A\+I.\+Game\+State}}
+
+
+The super-\/class for Game\+States. Represents the current state of some game. Implement this class to provide a \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine} with domain specific knowledge. The effiency of \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a2d877d322bd57b7c6962d09b20baeebb}{Is\+Terminal}, \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a252554bfd9fd58bdc06bd6f49b716240}{Generate\+Possible\+Turns} and \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a7e9d117069df3da5b42eeadecf33a326}{Clone} will all effect the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract bool \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a2d877d322bd57b7c6962d09b20baeebb}{Is\+Terminal} ()
+\begin{DoxyCompactList}\small\item\em Determines whether this \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} is terminal. \end{DoxyCompactList}\item 
+abstract I\+Enumerable$<$ \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} $>$ \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a252554bfd9fd58bdc06bd6f49b716240}{Generate\+Possible\+Turns} ()
+\begin{DoxyCompactList}\small\item\em A coroutine for generating every possible \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}. Generating turns this way allows turns to be generated and search lazily. The efficiency of generating each turn effects the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. You will only get the benefits of lazy evaluation if you yield each turn after generating them. Generating all turns and then iterating through them will negatively effect the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. \end{DoxyCompactList}\item 
+abstract \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a7e9d117069df3da5b42eeadecf33a326}{Clone} ()
+\begin{DoxyCompactList}\small\item\em Returns an exact copy of the current \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} with new references. Any \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} information that is altered by a \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} should be deep copied to prevent Turns writing over shared information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The super-\/class for Game\+States. Represents the current state of some game. Implement this class to provide a \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine} with domain specific knowledge. The effiency of \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a2d877d322bd57b7c6962d09b20baeebb}{Is\+Terminal}, \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a252554bfd9fd58bdc06bd6f49b716240}{Generate\+Possible\+Turns} and \hyperlink{class_universal_turn_based_a_i_1_1_game_state_a7e9d117069df3da5b42eeadecf33a326}{Clone} will all effect the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. 
+
+Some information that is typically useful is\+: whose turn it is and some representation of the state of each component of the game. It can also be useful to track some meta-\/information about the state that can be used by an evaluation function rather than having the evaluation function compute the information every time. For example, counts of things within the \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}. \begin{DoxySeeAlso}{See also}
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}, \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}, \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_game_state_a7e9d117069df3da5b42eeadecf33a326}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Game\+State@{Universal\+Turn\+Based\+A\+I\+::\+Game\+State}!Clone@{Clone}}
+\index{Clone@{Clone}!Universal\+Turn\+Based\+A\+I\+::\+Game\+State@{Universal\+Turn\+Based\+A\+I\+::\+Game\+State}}
+\subsubsection[{Clone}]{\setlength{\rightskip}{0pt plus 5cm}abstract {\bf Game\+State} Universal\+Turn\+Based\+A\+I.\+Game\+State.\+Clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_universal_turn_based_a_i_1_1_game_state_a7e9d117069df3da5b42eeadecf33a326}
+
+
+Returns an exact copy of the current \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} with new references. Any \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} information that is altered by a \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} should be deep copied to prevent Turns writing over shared information. 
+
+The efficiency of this method effects the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}, try to copy as little information as possible but remember that you will probably need new instances of any reference types that can be altered by a \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}. \hypertarget{class_universal_turn_based_a_i_1_1_game_state_a252554bfd9fd58bdc06bd6f49b716240}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Game\+State@{Universal\+Turn\+Based\+A\+I\+::\+Game\+State}!Generate\+Possible\+Turns@{Generate\+Possible\+Turns}}
+\index{Generate\+Possible\+Turns@{Generate\+Possible\+Turns}!Universal\+Turn\+Based\+A\+I\+::\+Game\+State@{Universal\+Turn\+Based\+A\+I\+::\+Game\+State}}
+\subsubsection[{Generate\+Possible\+Turns}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\+Enumerable$<${\bf Turn}$>$ Universal\+Turn\+Based\+A\+I.\+Game\+State.\+Generate\+Possible\+Turns (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_universal_turn_based_a_i_1_1_game_state_a252554bfd9fd58bdc06bd6f49b716240}
+
+
+A coroutine for generating every possible \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}. Generating turns this way allows turns to be generated and search lazily. The efficiency of generating each turn effects the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. You will only get the benefits of lazy evaluation if you yield each turn after generating them. Generating all turns and then iterating through them will negatively effect the performance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. 
+
+This method should only produce turns that are valid for this particular \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} 
+
+\begin{DoxyReturn}{Returns}
+The possible turns.
+\end{DoxyReturn}
+\hypertarget{class_universal_turn_based_a_i_1_1_game_state_a2d877d322bd57b7c6962d09b20baeebb}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Game\+State@{Universal\+Turn\+Based\+A\+I\+::\+Game\+State}!Is\+Terminal@{Is\+Terminal}}
+\index{Is\+Terminal@{Is\+Terminal}!Universal\+Turn\+Based\+A\+I\+::\+Game\+State@{Universal\+Turn\+Based\+A\+I\+::\+Game\+State}}
+\subsubsection[{Is\+Terminal}]{\setlength{\rightskip}{0pt plus 5cm}abstract bool Universal\+Turn\+Based\+A\+I.\+Game\+State.\+Is\+Terminal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_universal_turn_based_a_i_1_1_game_state_a2d877d322bd57b7c6962d09b20baeebb}
+
+
+Determines whether this \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} is terminal. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} If this \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} is terminal; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Generic\+Turn\+Based\+A\+I/Game\+State.\+cs\end{DoxyCompactItemize}

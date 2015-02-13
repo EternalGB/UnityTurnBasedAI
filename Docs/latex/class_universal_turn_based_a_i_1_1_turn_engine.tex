@@ -1,0 +1,214 @@
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine}{}\section{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine Class Reference}
+\label{class_universal_turn_based_a_i_1_1_turn_engine}\index{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine}}
+
+
+The super-\/class for all \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} Engines. Implementations of this class control the search for the best \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}. Provides an entry point for Unity with \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}{Get\+Next\+Turn} which can be used in a familiar coroutine pattern. Defines attributes common to all \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} Engines such as depth and time limits. Also provides the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}{Turn\+Ready\+Event} which is triggered after a turn search has been completed and returns the best turn found.  
+
+
+Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.842105cm]{class_universal_turn_based_a_i_1_1_turn_engine}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_adeb4bfc8a1cff70a60682d32243cc3a7}{}delegate void {\bfseries Turn\+Ready} (\hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} best\+Turn)\label{class_universal_turn_based_a_i_1_1_turn_engine_adeb4bfc8a1cff70a60682d32243cc3a7}
+
+\item 
+System.\+Collections.\+I\+Enumerator \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}{Get\+Next\+Turn} (\hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} state)
+\begin{DoxyCompactList}\small\item\em The entry point to the engine. Starts a new thread to run the search in and waits on it. Once the search is completed or timed out, calls the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}{Turn\+Ready\+Event} to return the best turn found. \end{DoxyCompactList}\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a210fed5125af320ef0a9634305bca467}{}\hyperlink{class_universal_turn_based_a_i_1_1_engine_stats}{Engine\+Stats} {\bfseries Reset\+Statistics\+Log} ()\label{class_universal_turn_based_a_i_1_1_turn_engine_a210fed5125af320ef0a9634305bca467}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a2a1210eb5816e1335f80d7a05efdafbf}{}virtual void {\bfseries Stop} ()\label{class_universal_turn_based_a_i_1_1_turn_engine_a2a1210eb5816e1335f80d7a05efdafbf}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a9b0c7d8f95391abd7d1840c2e9d0103f}{Init\+Engine} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, float time\+Limit, int depth\+Limit, bool time\+Limited, bool collect\+Stats)
+\begin{DoxyCompactList}\small\item\em Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1 \end{DoxyCompactList}\item 
+void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a7b14c450da986c60ebab0d992081371c}{Execute\+And\+Catch} (Action$<$ object $>$ action, object arg, Action$<$ Exception $>$ exception\+Handler)
+\begin{DoxyCompactList}\small\item\em Wrapper for catching exceptions from another thread \end{DoxyCompactList}\item 
+void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a1d1d7061052986196974028919d5c45f}{Exception\+Handler} (Exception ex)
+\begin{DoxyCompactList}\small\item\em Writes .N\+E\+T exceptions to the Unity Debug Log \end{DoxyCompactList}\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_af34e85df941ad5c3cb3b1af7260752fe}{}abstract void {\bfseries Turn\+Search\+Delegate} (object state)\label{class_universal_turn_based_a_i_1_1_turn_engine_af34e85df941ad5c3cb3b1af7260752fe}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a2f0108600a38970fa4f8d46ac5919e3d}{}static T {\bfseries Get\+Random\+Element$<$ T $>$} (I\+List$<$ T $>$ list)\label{class_universal_turn_based_a_i_1_1_turn_engine_a2f0108600a38970fa4f8d46ac5919e3d}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a7347274a628ec2ddb7fa6a8406afe881}{}int {\bfseries max\+Depth}\label{class_universal_turn_based_a_i_1_1_turn_engine_a7347274a628ec2ddb7fa6a8406afe881}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a40e0506e4c084dd213a01759d1a13802}{}float {\bfseries max\+Time}\label{class_universal_turn_based_a_i_1_1_turn_engine_a40e0506e4c084dd213a01759d1a13802}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_aa209ad1026c8f043bf2ad358951e795b}{}bool {\bfseries time\+Limited} = false\label{class_universal_turn_based_a_i_1_1_turn_engine_aa209ad1026c8f043bf2ad358951e795b}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a24555c3b7215807091eba769b5ee96b5}{}\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} {\bfseries eval}\label{class_universal_turn_based_a_i_1_1_turn_engine_a24555c3b7215807091eba769b5ee96b5}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_ab4a539edefe5953b9954a850a1562a9c}{}System.\+Random {\bfseries rando}\label{class_universal_turn_based_a_i_1_1_turn_engine_ab4a539edefe5953b9954a850a1562a9c}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a31430188d6c5d23190c21066a258c7d4}{}Date\+Time {\bfseries start\+Time}\label{class_universal_turn_based_a_i_1_1_turn_engine_a31430188d6c5d23190c21066a258c7d4}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a04cfc341ef23a654a3a0028b2db143bb}{}bool {\bfseries collect\+Stats} = false\label{class_universal_turn_based_a_i_1_1_turn_engine_a04cfc341ef23a654a3a0028b2db143bb}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a4932da2d4516a3be9af2c240968d3324}{}bool {\bfseries stopped} = true\label{class_universal_turn_based_a_i_1_1_turn_engine_a4932da2d4516a3be9af2c240968d3324}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a59743dff17fb9d95c4355431c6e5b35c}{}\hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} {\bfseries best\+Turn}\label{class_universal_turn_based_a_i_1_1_turn_engine_a59743dff17fb9d95c4355431c6e5b35c}
+
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_universal_turn_based_a_i_1_1_engine_stats}{Engine\+Stats} \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a2588f0e4a11f2c96613e72c890e39138}{Stats}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Property for accessing stats if there were collect. \end{DoxyCompactList}\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_aa96090059f46e1c54a9e7edde40c9f2d}{}bool {\bfseries Exit}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_aa96090059f46e1c54a9e7edde40c9f2d}
+
+\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Turn\+Ready \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}{Turn\+Ready\+Event}
+\begin{DoxyCompactList}\small\item\em Triggered after \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}{Get\+Next\+Turn} has been called and the found turn is ready to be returned. best\+Turn will be the best turn discovered by the engine \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The super-\/class for all \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} Engines. Implementations of this class control the search for the best \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}. Provides an entry point for Unity with \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}{Get\+Next\+Turn} which can be used in a familiar coroutine pattern. Defines attributes common to all \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} Engines such as depth and time limits. Also provides the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}{Turn\+Ready\+Event} which is triggered after a turn search has been completed and returns the best turn found. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}, \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}, \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a1d1d7061052986196974028919d5c45f}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}!Exception\+Handler@{Exception\+Handler}}
+\index{Exception\+Handler@{Exception\+Handler}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}}
+\subsubsection[{Exception\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void Universal\+Turn\+Based\+A\+I.\+Turn\+Engine.\+Exception\+Handler (
+\begin{DoxyParamCaption}
+\item[{Exception}]{ex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_a1d1d7061052986196974028919d5c45f}
+
+
+Writes .N\+E\+T exceptions to the Unity Debug Log 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ex} & The exception\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a7b14c450da986c60ebab0d992081371c}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}!Execute\+And\+Catch@{Execute\+And\+Catch}}
+\index{Execute\+And\+Catch@{Execute\+And\+Catch}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}}
+\subsubsection[{Execute\+And\+Catch}]{\setlength{\rightskip}{0pt plus 5cm}void Universal\+Turn\+Based\+A\+I.\+Turn\+Engine.\+Execute\+And\+Catch (
+\begin{DoxyParamCaption}
+\item[{Action$<$ object $>$}]{action, }
+\item[{object}]{arg, }
+\item[{Action$<$ Exception $>$}]{exception\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_a7b14c450da986c60ebab0d992081371c}
+
+
+Wrapper for catching exceptions from another thread 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The action to run\\
+\hline
+{\em arg} & The action\textquotesingle{}s arguments\\
+\hline
+{\em exception\+Handler} & A handler for the exceptions\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}!Get\+Next\+Turn@{Get\+Next\+Turn}}
+\index{Get\+Next\+Turn@{Get\+Next\+Turn}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}}
+\subsubsection[{Get\+Next\+Turn}]{\setlength{\rightskip}{0pt plus 5cm}System.\+Collections.\+I\+Enumerator Universal\+Turn\+Based\+A\+I.\+Turn\+Engine.\+Get\+Next\+Turn (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+State}}]{state}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}
+
+
+The entry point to the engine. Starts a new thread to run the search in and waits on it. Once the search is completed or timed out, calls the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}{Turn\+Ready\+Event} to return the best turn found. 
+
+Typical usage from Unity is\+: 
+\begin{DoxyCode}
+StartCoroutine(engine.GetNextTurn(state));
+\end{DoxyCode}
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & State.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a9b0c7d8f95391abd7d1840c2e9d0103f}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}!Init\+Engine@{Init\+Engine}}
+\index{Init\+Engine@{Init\+Engine}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}}
+\subsubsection[{Init\+Engine}]{\setlength{\rightskip}{0pt plus 5cm}void Universal\+Turn\+Based\+A\+I.\+Turn\+Engine.\+Init\+Engine (
+\begin{DoxyParamCaption}
+\item[{{\bf Evaluator}}]{eval, }
+\item[{float}]{time\+Limit, }
+\item[{int}]{depth\+Limit, }
+\item[{bool}]{time\+Limited, }
+\item[{bool}]{collect\+Stats}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_a9b0c7d8f95391abd7d1840c2e9d0103f}
+
+
+Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eval} & The class used to evaluate Game\+States searched by this engine\\
+\hline
+{\em time\+Limit} & The maximum time allowed for search, in seconds. Must be at least 1\\
+\hline
+{\em depth\+Limit} & The maximum depth to search in the \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} search tree. Also called \char`\"{}ply\char`\"{}. Must be at least 1\\
+\hline
+{\em time\+Limited} & If set to {\ttfamily true} Search will end after the set time\+Limit, otherwise search will complete to the set depth\+Limit\\
+\hline
+{\em collect\+Stats} & If set to {\ttfamily true} collect statistics.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_a2588f0e4a11f2c96613e72c890e39138}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}!Stats@{Stats}}
+\index{Stats@{Stats}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}}
+\subsubsection[{Stats}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Engine\+Stats} Universal\+Turn\+Based\+A\+I.\+Turn\+Engine.\+Stats\hspace{0.3cm}{\ttfamily [get]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_a2588f0e4a11f2c96613e72c890e39138}
+
+
+Property for accessing stats if there were collect. 
+
+If stat collection enabled\+: returns any collected statisics collected since the last Reset\+Statistics\+Log call otherwise returns a new, empty \hyperlink{class_universal_turn_based_a_i_1_1_engine_stats}{Engine\+Stats}
+
+\subsection{Event Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}!Turn\+Ready\+Event@{Turn\+Ready\+Event}}
+\index{Turn\+Ready\+Event@{Turn\+Ready\+Event}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine}}
+\subsubsection[{Turn\+Ready\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Turn\+Ready Universal\+Turn\+Based\+A\+I.\+Turn\+Engine.\+Turn\+Ready\+Event}\label{class_universal_turn_based_a_i_1_1_turn_engine_af10115494121382d2966a8fc9fe4c9a0}
+
+
+Triggered after \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_ae2a5b877b8194f05dc970226722515ee}{Get\+Next\+Turn} has been called and the found turn is ready to be returned. best\+Turn will be the best turn discovered by the engine 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Generic\+Turn\+Based\+A\+I/Turn\+Engine.\+cs\end{DoxyCompactItemize}

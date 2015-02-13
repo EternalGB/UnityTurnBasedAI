@@ -1,0 +1,138 @@
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{}\section{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded Class Reference}
+\label{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}\index{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded}}
+
+
+A single threaded implementation of \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. Uses an implementation of the Minimax algorithm with Alpha-\/\+Beta pruning.  
+
+
+Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a0c58e0d032bc0ae478d4cc2c81f08b5a}{Turn\+Engine\+Single\+Threaded} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, float time\+Limit, bool collect\+Stats=false)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded} class with a time limit. Once the time limit has been reached the best turn found so far will be {\itshape best\+Turn}  \end{DoxyCompactList}\item 
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a5e3a9b73de9ae9436216d16c24035162}{Turn\+Engine\+Single\+Threaded} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, int depth\+Limit, bool collect\+Stats=false)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded} class with a depth limit. Searches the entire \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} tree up to the specific depth. The best turn found after the search will be {\itshape best\+Turn} . \end{DoxyCompactList}\item 
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a232b6e64b5d9633bbbc4f90db52a0c67}{Turn\+Engine\+Single\+Threaded} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, float time\+Limit, int depth\+Limit, bool collect\+Stats=false)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded} class with both a time and depth limit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a2ae467b6b27ec5e2dfe1d033c86ea4d8}{Turn\+Search\+Delegate} (object state)
+\begin{DoxyCompactList}\small\item\em A wrapper for the Minimax algorithm. Initialises the first branch of turns so that they can be given values and the best possible returned. Always generates at least one possible turns so that at least some sensible result can be returned. When the search is completed or timed out best\+Turn will be assigned to the best found turn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A single threaded implementation of \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. Uses an implementation of the Minimax algorithm with Alpha-\/\+Beta pruning. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}, \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Turn\+Engine\+Multi\+Threaded}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a0c58e0d032bc0ae478d4cc2c81f08b5a}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}!Turn\+Engine\+Single\+Threaded@{Turn\+Engine\+Single\+Threaded}}
+\index{Turn\+Engine\+Single\+Threaded@{Turn\+Engine\+Single\+Threaded}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}}
+\subsubsection[{Turn\+Engine\+Single\+Threaded}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded.\+Turn\+Engine\+Single\+Threaded (
+\begin{DoxyParamCaption}
+\item[{{\bf Evaluator}}]{eval, }
+\item[{float}]{time\+Limit, }
+\item[{bool}]{collect\+Stats = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a0c58e0d032bc0ae478d4cc2c81f08b5a}
+
+
+Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded} class with a time limit. Once the time limit has been reached the best turn found so far will be {\itshape best\+Turn}  
+
+
+\begin{DoxyParams}{Parameters}
+{\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator}\\
+\hline
+{\em time\+Limit} & The time limit\\
+\hline
+{\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a5e3a9b73de9ae9436216d16c24035162}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}!Turn\+Engine\+Single\+Threaded@{Turn\+Engine\+Single\+Threaded}}
+\index{Turn\+Engine\+Single\+Threaded@{Turn\+Engine\+Single\+Threaded}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}}
+\subsubsection[{Turn\+Engine\+Single\+Threaded}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded.\+Turn\+Engine\+Single\+Threaded (
+\begin{DoxyParamCaption}
+\item[{{\bf Evaluator}}]{eval, }
+\item[{int}]{depth\+Limit, }
+\item[{bool}]{collect\+Stats = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a5e3a9b73de9ae9436216d16c24035162}
+
+
+Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded} class with a depth limit. Searches the entire \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} tree up to the specific depth. The best turn found after the search will be {\itshape best\+Turn} . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eval} & Eval.\\
+\hline
+{\em depth\+Limit} & Depth limit.\\
+\hline
+{\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a232b6e64b5d9633bbbc4f90db52a0c67}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}!Turn\+Engine\+Single\+Threaded@{Turn\+Engine\+Single\+Threaded}}
+\index{Turn\+Engine\+Single\+Threaded@{Turn\+Engine\+Single\+Threaded}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}}
+\subsubsection[{Turn\+Engine\+Single\+Threaded}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded.\+Turn\+Engine\+Single\+Threaded (
+\begin{DoxyParamCaption}
+\item[{{\bf Evaluator}}]{eval, }
+\item[{float}]{time\+Limit, }
+\item[{int}]{depth\+Limit, }
+\item[{bool}]{collect\+Stats = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a232b6e64b5d9633bbbc4f90db52a0c67}
+
+
+Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded} class with both a time and depth limit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} to use\\
+\hline
+{\em time\+Limit} & Time limit in seconds. Must be at least 1\\
+\hline
+{\em depth\+Limit} & Depth limit or maximum \char`\"{}ply\char`\"{}. Must be at least 1\\
+\hline
+{\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a2ae467b6b27ec5e2dfe1d033c86ea4d8}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}!Turn\+Search\+Delegate@{Turn\+Search\+Delegate}}
+\index{Turn\+Search\+Delegate@{Turn\+Search\+Delegate}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Single\+Threaded}}
+\subsubsection[{Turn\+Search\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}override void Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Single\+Threaded.\+Turn\+Search\+Delegate (
+\begin{DoxyParamCaption}
+\item[{object}]{state}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded_a2ae467b6b27ec5e2dfe1d033c86ea4d8}
+
+
+A wrapper for the Minimax algorithm. Initialises the first branch of turns so that they can be given values and the best possible returned. Always generates at least one possible turns so that at least some sensible result can be returned. When the search is completed or timed out best\+Turn will be assigned to the best found turn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The starting state\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Generic\+Turn\+Based\+A\+I/Turn\+Engine\+Single\+Threaded.\+cs\end{DoxyCompactItemize}

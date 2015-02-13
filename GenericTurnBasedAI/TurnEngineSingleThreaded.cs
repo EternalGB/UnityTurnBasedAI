@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEngine;
 
 namespace UniversalTurnBasedAI
 {
@@ -95,8 +94,6 @@ namespace UniversalTurnBasedAI
 				
 				float bestValue = eval.minValue;
 				foreach(Turn turn in rootTurns) {
-					
-					//Debug.Log("Searching turn " + turn.ToString() + " to depth " + depth);
 					if(Exit) {
 						exit = true;
 						break;

@@ -1,0 +1,70 @@
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator}{}\section{Universal\+Turn\+Based\+A\+I.\+Evaluator Class Reference}
+\label{class_universal_turn_based_a_i_1_1_evaluator}\index{Universal\+Turn\+Based\+A\+I.\+Evaluator@{Universal\+Turn\+Based\+A\+I.\+Evaluator}}
+
+
+The super-\/class for all Evaluators. An \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} defines an evaluation function to determine the value of a \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} from the point of view of a particular player.  
+
+
+Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+Evaluator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_universal_turn_based_a_i_1_1_evaluator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract float \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_a949d4c3583870a45dc136f1e46114c99}{Evaluate} (\hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} state)
+\begin{DoxyCompactList}\small\item\em Evaluate the specified \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}. Good evaluation functions should return max\+Value on a winning state and min\+Value on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. \end{DoxyCompactList}\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_a6cd4b0d6b6e418edd1af8b524cd9b32b}{}abstract \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} {\bfseries Clone} ()\label{class_universal_turn_based_a_i_1_1_evaluator_a6cd4b0d6b6e418edd1af8b524cd9b32b}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_af1303b4366709d7a5af2fb6e133791fa}{}float {\bfseries min\+Value} = float.\+Min\+Value\label{class_universal_turn_based_a_i_1_1_evaluator_af1303b4366709d7a5af2fb6e133791fa}
+
+\item 
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_aaa3848cf79994e5674487eb1c6f0f796}{}float {\bfseries max\+Value} = float.\+Max\+Value\label{class_universal_turn_based_a_i_1_1_evaluator_aaa3848cf79994e5674487eb1c6f0f796}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The super-\/class for all Evaluators. An \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} defines an evaluation function to determine the value of a \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} from the point of view of a particular player. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}, \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}, \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_a949d4c3583870a45dc136f1e46114c99}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Universal\+Turn\+Based\+A\+I\+::\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator}}
+\subsubsection[{Evaluate}]{\setlength{\rightskip}{0pt plus 5cm}abstract float Universal\+Turn\+Based\+A\+I.\+Evaluator.\+Evaluate (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+State}}]{state}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_universal_turn_based_a_i_1_1_evaluator_a949d4c3583870a45dc136f1e46114c99}
+
+
+Evaluate the specified \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}. Good evaluation functions should return max\+Value on a winning state and min\+Value on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. 
+
+As this will need to be called on every searched \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} the efficiency of this method is directly related to the performance of a \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The state to evaluate\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_ac7248adff1c997e43c63e4f34fc3121c}{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Generic\+Turn\+Based\+A\+I/Evaluator.\+cs\end{DoxyCompactItemize}
