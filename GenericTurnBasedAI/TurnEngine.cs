@@ -68,10 +68,10 @@ namespace UniversalTurnBasedAI
 		public event TurnReady TurnReadyEvent;
 
 		/// <summary>
-		/// Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1
+		/// Initialises the common engine elements.
 		/// </summary>
 		/// <param name="eval">The class used to evaluate GameStates searched by this engine</param>
-		/// <param name="timeLimit">The maximum time allowed for search, in seconds. Must be at least 1</param>
+		/// <param name="timeLimit">The maximum time allowed for search, in seconds. Must be greater than 0</param>
 		/// <param name="depthLimit">The maximum depth to search in the GameState search tree. Also called "ply". Must be at least 1</param>
 		/// <param name="timeLimited">If set to <c>true</c> Search will end after the set timeLimit, otherwise
 		/// search will complete to the set depthLimit</param>
@@ -80,7 +80,7 @@ namespace UniversalTurnBasedAI
 		{
 
 			if(timeLimit <= 0) {
-				throw new ArgumentOutOfRangeException("timeLimit","Must be at least 1");
+				throw new ArgumentOutOfRangeException("timeLimit","Must be greater than 0");
 			}
 			if(depthLimit <= 0) {
 				throw new ArgumentOutOfRangeException("depthLimit","Must be at least 1");

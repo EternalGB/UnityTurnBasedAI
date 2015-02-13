@@ -61,7 +61,7 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 \begin{DoxyParams}{Parameters}
 {\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator}\\
 \hline
-{\em time\+Limit} & The time limit\\
+{\em time\+Limit} & The time limit, must be greater than 0\\
 \hline
 {\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
 \hline
@@ -83,7 +83,7 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 \begin{DoxyParams}{Parameters}
 {\em eval} & Eval.\\
 \hline
-{\em depth\+Limit} & Depth limit.\\
+{\em depth\+Limit} & Depth limit, must be at least 1\\
 \hline
 {\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
 \hline
@@ -106,7 +106,7 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 \begin{DoxyParams}{Parameters}
 {\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} to use\\
 \hline
-{\em time\+Limit} & Time limit in seconds. Must be at least 1\\
+{\em time\+Limit} & Time limit in seconds. Must be greater than 0\\
 \hline
 {\em depth\+Limit} & Depth limit or maximum \char`\"{}ply\char`\"{}. Must be at least 1\\
 \hline

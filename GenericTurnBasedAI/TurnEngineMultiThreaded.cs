@@ -27,7 +27,7 @@ namespace UniversalTurnBasedAI
 		/// a time limit. Once the time limit has been reached the best turn found so far will be <paramref name="bestTurn"/>
 		/// </summary>
 		/// <param name="eval">The Evaluator</param>
-		/// <param name="timeLimit">The time limit</param>
+		/// <param name="timeLimit">The time limit, must be greater than 0</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineMultiThreaded (Evaluator eval, float timeLimit, bool collectStats = false)
 		{
@@ -40,7 +40,7 @@ namespace UniversalTurnBasedAI
 		/// search will be <paramref name="bestTurn"/>.
 		/// </summary>
 		/// <param name="eval">Eval.</param>
-		/// <param name="depthLimit">Depth limit.</param>
+		/// <param name="depthLimit">Depth limit, must be at least 1</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineMultiThreaded (Evaluator eval, int depthLimit, bool collectStats = false)
 		{
@@ -51,7 +51,7 @@ namespace UniversalTurnBasedAI
 		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineMultiThreaded"/> class.
 		/// </summary>
 		/// <param name="eval">The <see cref="Evaluator"/> to use</param>
-		/// <param name="timeLimit">Time limit in seconds. Must be at least 1</param>
+		/// <param name="timeLimit">Time limit in seconds. Must be greater than 0</param>
 		/// <param name="depthLimit">Depth limit or maximum "ply". Must be at least 1</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
 		public TurnEngineMultiThreaded(Evaluator eval, float timeLimit, int depthLimit, bool collectStats = false)

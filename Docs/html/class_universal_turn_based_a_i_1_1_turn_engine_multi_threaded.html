@@ -141,7 +141,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a877d78f1b5b0f51ecf745bf5cf8fbb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_universal_turn_based_a_i_1_1_turn_engine')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html">UniversalTurnBasedAI.TurnEngine</a></td></tr>
 <tr class="memitem:a9b0c7d8f95391abd7d1840c2e9d0103f inherit pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html#a9b0c7d8f95391abd7d1840c2e9d0103f">InitEngine</a> (<a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html">Evaluator</a> eval, float timeLimit, int depthLimit, bool timeLimited, bool collectStats)</td></tr>
-<tr class="memdesc:a9b0c7d8f95391abd7d1840c2e9d0103f inherit pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1  <a href="#a9b0c7d8f95391abd7d1840c2e9d0103f">More...</a><br /></td></tr>
+<tr class="memdesc:a9b0c7d8f95391abd7d1840c2e9d0103f inherit pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the common engine elements.  <a href="#a9b0c7d8f95391abd7d1840c2e9d0103f">More...</a><br /></td></tr>
 <tr class="separator:a9b0c7d8f95391abd7d1840c2e9d0103f inherit pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b14c450da986c60ebab0d992081371c inherit pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html#a7b14c450da986c60ebab0d992081371c">ExecuteAndCatch</a> (Action&lt; object &gt; action, object arg, Action&lt; Exception &gt; exceptionHandler)</td></tr>
 <tr class="memdesc:a7b14c450da986c60ebab0d992081371c inherit pro_methods_class_universal_turn_based_a_i_1_1_turn_engine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper for catching exceptions from another thread  <a href="#a7b14c450da986c60ebab0d992081371c">More...</a><br /></td></tr>
@@ -243,7 +243,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Exit</b><code> [get]<
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">eval</td><td>The <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html" title="The super-class for all Evaluators. An Evaluator defines an evaluation function to determine the valu...">Evaluator</a></td></tr>
-    <tr><td class="paramname">timeLimit</td><td>The time limit</td></tr>
+    <tr><td class="paramname">timeLimit</td><td>The time limit, must be greater than 0</td></tr>
     <tr><td class="paramname">collectStats</td><td>If set to <code>true</code> collect stats.</td></tr>
   </table>
   </dd>
@@ -293,7 +293,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Exit</b><code> [get]<
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">eval</td><td>Eval.</td></tr>
-    <tr><td class="paramname">depthLimit</td><td>Depth limit.</td></tr>
+    <tr><td class="paramname">depthLimit</td><td>Depth limit, must be at least 1</td></tr>
     <tr><td class="paramname">collectStats</td><td>If set to <code>true</code> collect stats.</td></tr>
   </table>
   </dd>
@@ -349,7 +349,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Exit</b><code> [get]<
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">eval</td><td>The <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html" title="The super-class for all Evaluators. An Evaluator defines an evaluation function to determine the valu...">Evaluator</a> to use</td></tr>
-    <tr><td class="paramname">timeLimit</td><td>Time limit in seconds. Must be at least 1</td></tr>
+    <tr><td class="paramname">timeLimit</td><td>Time limit in seconds. Must be greater than 0</td></tr>
     <tr><td class="paramname">depthLimit</td><td>Depth limit or maximum "ply". Must be at least 1</td></tr>
     <tr><td class="paramname">collectStats</td><td>If set to <code>true</code> collect stats.</td></tr>
   </table>
@@ -400,7 +400,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Exit</b><code> [get]<
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 13 2015 12:39:48 for Universal Turn Based AI by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 13 2015 16:50:38 for Universal Turn Based AI by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -29,7 +29,7 @@ System.\+Collections.\+I\+Enumerator \hyperlink{class_universal_turn_based_a_i_1
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a9b0c7d8f95391abd7d1840c2e9d0103f}{Init\+Engine} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, float time\+Limit, int depth\+Limit, bool time\+Limited, bool collect\+Stats)
-\begin{DoxyCompactList}\small\item\em Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1 \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initialises the common engine elements. \end{DoxyCompactList}\item 
 void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a7b14c450da986c60ebab0d992081371c}{Execute\+And\+Catch} (Action$<$ object $>$ action, object arg, Action$<$ Exception $>$ exception\+Handler)
 \begin{DoxyCompactList}\small\item\em Wrapper for catching exceptions from another thread \end{DoxyCompactList}\item 
 void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_a1d1d7061052986196974028919d5c45f}{Exception\+Handler} (Exception ex)
@@ -172,13 +172,13 @@ StartCoroutine(engine.GetNextTurn(state));
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_a9b0c7d8f95391abd7d1840c2e9d0103f}
 
 
-Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1 
+Initialises the common engine elements. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em eval} & The class used to evaluate Game\+States searched by this engine\\
 \hline
-{\em time\+Limit} & The maximum time allowed for search, in seconds. Must be at least 1\\
+{\em time\+Limit} & The maximum time allowed for search, in seconds. Must be greater than 0\\
 \hline
 {\em depth\+Limit} & The maximum depth to search in the \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} search tree. Also called \char`\"{}ply\char`\"{}. Must be at least 1\\
 \hline

@@ -132,7 +132,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Stop</b> ()</
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a9b0c7d8f95391abd7d1840c2e9d0103f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html#a9b0c7d8f95391abd7d1840c2e9d0103f">InitEngine</a> (<a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html">Evaluator</a> eval, float timeLimit, int depthLimit, bool timeLimited, bool collectStats)</td></tr>
-<tr class="memdesc:a9b0c7d8f95391abd7d1840c2e9d0103f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1  <a href="#a9b0c7d8f95391abd7d1840c2e9d0103f">More...</a><br /></td></tr>
+<tr class="memdesc:a9b0c7d8f95391abd7d1840c2e9d0103f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the common engine elements.  <a href="#a9b0c7d8f95391abd7d1840c2e9d0103f">More...</a><br /></td></tr>
 <tr class="separator:a9b0c7d8f95391abd7d1840c2e9d0103f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b14c450da986c60ebab0d992081371c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html#a7b14c450da986c60ebab0d992081371c">ExecuteAndCatch</a> (Action&lt; object &gt; action, object arg, Action&lt; Exception &gt; exceptionHandler)</td></tr>
 <tr class="memdesc:a7b14c450da986c60ebab0d992081371c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper for catching exceptions from another thread  <a href="#a7b14c450da986c60ebab0d992081371c">More...</a><br /></td></tr>
@@ -364,11 +364,11 @@ Events</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initialises the common engine elements. If time or depth limit are less than 0 they are set to 1 </p>
+<p>Initialises the common engine elements. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">eval</td><td>The class used to evaluate GameStates searched by this engine</td></tr>
-    <tr><td class="paramname">timeLimit</td><td>The maximum time allowed for search, in seconds. Must be at least 1</td></tr>
+    <tr><td class="paramname">timeLimit</td><td>The maximum time allowed for search, in seconds. Must be greater than 0</td></tr>
     <tr><td class="paramname">depthLimit</td><td>The maximum depth to search in the <a class="el" href="class_universal_turn_based_a_i_1_1_game_state.html" title="The super-class for GameStates. Represents the current state of some game. Implement this class to pr...">GameState</a> search tree. Also called "ply". Must be at least 1</td></tr>
     <tr><td class="paramname">timeLimited</td><td>If set to <code>true</code> Search will end after the set timeLimit, otherwise search will complete to the set depthLimit</td></tr>
     <tr><td class="paramname">collectStats</td><td>If set to <code>true</code> collect statistics.</td></tr>
@@ -423,7 +423,7 @@ Events</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 13 2015 12:39:48 for Universal Turn Based AI by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 13 2015 16:50:38 for Universal Turn Based AI by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
