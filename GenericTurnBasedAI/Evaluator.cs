@@ -29,8 +29,6 @@ namespace UniversalTurnBasedAI
 		/// <param name="state">The state to evaluate</param>
 		public abstract float Evaluate(GameState state);
 
-		public abstract Evaluator Clone();
-
 	}
 }
 

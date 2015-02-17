@@ -29,12 +29,7 @@ namespace UniversalTurnBasedAI
 		public override float Evaluate (GameState state)
 		{
 			return min + (float)rando.NextDouble()*(max-min);
-		}
-
-		public override Evaluator Clone ()
-		{
-			return new EvaluatorRandom(min,max);
-		}
+		} 
 	}
 }
 
