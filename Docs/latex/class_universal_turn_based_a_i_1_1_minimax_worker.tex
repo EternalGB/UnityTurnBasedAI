@@ -8,12 +8,12 @@ Holds all of the initialising information required for a Minimax search so it ca
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker_a82bd3b80cb0061eba98ca52eae4c2114}{Minimax\+Worker} (\hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} root\+State, \hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} \hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker_ac4ce50aa90e42a8702e5ad783a35f05b}{first\+Turn}, \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, int max\+Depth, bool our\+Turn, Event\+Wait\+Handle wait\+Handle)
+\hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker_aefc299364d8cbc30ebb6caba179703d7}{Minimax\+Worker} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} root\+State, \hyperlink{interface_universal_turn_based_a_i_1_1_i_turn}{I\+Turn} \hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker_a7b1186503a4def5fa695b58502d05c9b}{first\+Turn}, \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator}{I\+Evaluator} eval, int max\+Depth, bool our\+Turn, Event\+Wait\+Handle wait\+Handle)
 \begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker}{Universal\+Turn\+Based\+A\+I.\+Minimax\+Worker} class. \end{DoxyCompactList}\item 
 \hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_a3003a7a26d65f3e6ef877f21c7c7d307}{}void {\bfseries Evaluate\+State} (object thread\+State)\label{class_universal_turn_based_a_i_1_1_minimax_worker_a3003a7a26d65f3e6ef877f21c7c7d307}
 
 \item 
-\hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_a223dc0c8825a7ef9b5fb0656b2b5695a}{}float {\bfseries Alpha\+Beta} (\hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} state, \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, int depth, float alpha, float beta, bool our\+Turn)\label{class_universal_turn_based_a_i_1_1_minimax_worker_a223dc0c8825a7ef9b5fb0656b2b5695a}
+\hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_ad9b6596f36acc2970d865c8b4a29d882}{}float {\bfseries Alpha\+Beta} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} state, \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator}{I\+Evaluator} eval, int depth, float alpha, float beta, bool our\+Turn)\label{class_universal_turn_based_a_i_1_1_minimax_worker_ad9b6596f36acc2970d865c8b4a29d882}
 
 \item 
 \hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_aaf19d669a25879a067716e12af1326be}{}void {\bfseries Stop} ()\label{class_universal_turn_based_a_i_1_1_minimax_worker_aaf19d669a25879a067716e12af1326be}
@@ -22,7 +22,7 @@ Holds all of the initialising information required for a Minimax search so it ca
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_universal_turn_based_a_i_1_1_turn}{Turn} \hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker_ac4ce50aa90e42a8702e5ad783a35f05b}{first\+Turn}
+\hyperlink{interface_universal_turn_based_a_i_1_1_i_turn}{I\+Turn} \hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker_a7b1186503a4def5fa695b58502d05c9b}{first\+Turn}
 \begin{DoxyCompactList}\small\item\em The first turn to use in the search this is the turn retrieved for returning \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
@@ -37,18 +37,18 @@ Holds all of the initialising information required for a Minimax search so it ca
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_a82bd3b80cb0061eba98ca52eae4c2114}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker@{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker}!Minimax\+Worker@{Minimax\+Worker}}
+\hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_aefc299364d8cbc30ebb6caba179703d7}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker@{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker}!Minimax\+Worker@{Minimax\+Worker}}
 \index{Minimax\+Worker@{Minimax\+Worker}!Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker@{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker}}
 \subsubsection[{Minimax\+Worker}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Minimax\+Worker.\+Minimax\+Worker (
 \begin{DoxyParamCaption}
-\item[{{\bf Game\+State}}]{root\+State, }
-\item[{{\bf Turn}}]{first\+Turn, }
-\item[{{\bf Evaluator}}]{eval, }
+\item[{{\bf I\+Game\+State}}]{root\+State, }
+\item[{{\bf I\+Turn}}]{first\+Turn, }
+\item[{{\bf I\+Evaluator}}]{eval, }
 \item[{int}]{max\+Depth, }
 \item[{bool}]{our\+Turn, }
 \item[{Event\+Wait\+Handle}]{wait\+Handle}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_minimax_worker_a82bd3b80cb0061eba98ca52eae4c2114}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_minimax_worker_aefc299364d8cbc30ebb6caba179703d7}
 
 
 Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_minimax_worker}{Universal\+Turn\+Based\+A\+I.\+Minimax\+Worker} class. 
@@ -59,7 +59,7 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 \hline
 {\em first\+Turn} & The turn to apply to the starting state to generate this worker\textquotesingle{}s branch\\
 \hline
-{\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator}\\
+{\em eval} & The Evaluator\\
 \hline
 {\em max\+Depth} & Max depth.\\
 \hline
@@ -71,9 +71,9 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_ac4ce50aa90e42a8702e5ad783a35f05b}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker@{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker}!first\+Turn@{first\+Turn}}
+\hypertarget{class_universal_turn_based_a_i_1_1_minimax_worker_a7b1186503a4def5fa695b58502d05c9b}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker@{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker}!first\+Turn@{first\+Turn}}
 \index{first\+Turn@{first\+Turn}!Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker@{Universal\+Turn\+Based\+A\+I\+::\+Minimax\+Worker}}
-\subsubsection[{first\+Turn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Turn} Universal\+Turn\+Based\+A\+I.\+Minimax\+Worker.\+first\+Turn}\label{class_universal_turn_based_a_i_1_1_minimax_worker_ac4ce50aa90e42a8702e5ad783a35f05b}
+\subsubsection[{first\+Turn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Turn} Universal\+Turn\+Based\+A\+I.\+Minimax\+Worker.\+first\+Turn}\label{class_universal_turn_based_a_i_1_1_minimax_worker_a7b1186503a4def5fa695b58502d05c9b}
 
 
 The first turn to use in the search this is the turn retrieved for returning 

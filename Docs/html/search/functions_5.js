@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['minimaxworker',['MinimaxWorker',['../class_universal_turn_based_a_i_1_1_minimax_worker.html#a82bd3b80cb0061eba98ca52eae4c2114',1,'UniversalTurnBasedAI::MinimaxWorker']]]
+  ['minimaxworker',['MinimaxWorker',['../class_universal_turn_based_a_i_1_1_minimax_worker.html#aefc299364d8cbc30ebb6caba179703d7',1,'UniversalTurnBasedAI::MinimaxWorker']]]
 ];

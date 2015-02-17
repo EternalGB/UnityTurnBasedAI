@@ -5,11 +5,11 @@ namespace UniversalTurnBasedAI
 
 	/// <summary>
 	/// An Evaluator defines an evaluation function to determine the
-	/// value of a <see cref="GameState"/> from the point of view of a particular player.
+	/// value of a <see cref="IGameState"/> from the point of view of a particular player.
 	/// 
 	/// <seealso cref="TurnEngine"/>
-	/// <seealso cref="GameState"/>
-	/// <seealso cref="Turn"/>
+	/// <seealso cref="IGameState"/>
+	/// <seealso cref="ITurn"/>
 	/// </summary>
 	public interface IEvaluator 
 	{
@@ -32,7 +32,7 @@ namespace UniversalTurnBasedAI
 		/// value to non-terminal states that give the engine some indication of whether the player is closer
 		/// or further away from winning.
 		/// 
-		/// As this will need to be called on every searched <see cref="GameState"/> the efficiency of this
+		/// As this will need to be called on every searched <see cref="IGameState"/> the efficiency of this
 		/// method is directly related to the performance of a <see cref="TurnEngine"/>. 
 		/// </summary>
 		/// <param name="state">The state to evaluate</param>

@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>An <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html" title="The super-class for all Evaluators. An Evaluator defines an evaluation function to determine the valu...">Evaluator</a> that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly.  
+<p>An Evaluator that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly.  
  <a href="class_universal_turn_based_a_i_1_1_evaluator_random.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for UniversalTurnBasedAI.EvaluatorRandom:</div>
@@ -104,7 +104,7 @@ Inheritance diagram for UniversalTurnBasedAI.EvaluatorRandom:</div>
  <div class="center">
   <img src="class_universal_turn_based_a_i_1_1_evaluator_random.png" usemap="#UniversalTurnBasedAI.EvaluatorRandom_map" alt=""/>
   <map id="UniversalTurnBasedAI.EvaluatorRandom_map" name="UniversalTurnBasedAI.EvaluatorRandom_map">
-<area href="class_universal_turn_based_a_i_1_1_evaluator.html" title="The super-class for all Evaluators. An Evaluator defines an evaluation function to determine the valu..." alt="UniversalTurnBasedAI.Evaluator" shape="rect" coords="0,0,241,24"/>
+<area href="interface_universal_turn_based_a_i_1_1_i_evaluator.html" title="An Evaluator defines an evaluation function to determine the value of a IGameState from the point of ..." alt="UniversalTurnBasedAI.IEvaluator" shape="rect" coords="0,0,241,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -113,25 +113,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3914def8b2e2bb2f6a264a6762b84063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#a3914def8b2e2bb2f6a264a6762b84063">EvaluatorRandom</a> (float min, float max)</td></tr>
 <tr class="memdesc:a3914def8b2e2bb2f6a264a6762b84063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html" title="An Evaluator that returns random values for every state. Can be useful to test other evaluation funct...">UniversalTurnBasedAI.EvaluatorRandom</a> class.  <a href="#a3914def8b2e2bb2f6a264a6762b84063">More...</a><br /></td></tr>
 <tr class="separator:a3914def8b2e2bb2f6a264a6762b84063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7248adff1c997e43c63e4f34fc3121c"><td class="memItemLeft" align="right" valign="top">override float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#ac7248adff1c997e43c63e4f34fc3121c">Evaluate</a> (<a class="el" href="class_universal_turn_based_a_i_1_1_game_state.html">GameState</a> state)</td></tr>
-<tr class="memdesc:ac7248adff1c997e43c63e4f34fc3121c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the specified <a class="el" href="class_universal_turn_based_a_i_1_1_game_state.html" title="The super-class for GameStates. Represents the current state of some game. Implement this class to pr...">GameState</a>. Good evaluation functions should return maxValue on a winning state and minValue on a losing state. This method must also provide value to non-terminal states that give the engine some indication of whether the player is closer or further away from winning.  <a href="#ac7248adff1c997e43c63e4f34fc3121c">More...</a><br /></td></tr>
-<tr class="separator:ac7248adff1c997e43c63e4f34fc3121c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15c6ccc02b7939167f538f82643139bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15c6ccc02b7939167f538f82643139bd"></a>
-override <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html">Evaluator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Clone</b> ()</td></tr>
-<tr class="separator:a15c6ccc02b7939167f538f82643139bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_attribs_class_universal_turn_based_a_i_1_1_evaluator"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_universal_turn_based_a_i_1_1_evaluator')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html">UniversalTurnBasedAI.Evaluator</a></td></tr>
-<tr class="memitem:af1303b4366709d7a5af2fb6e133791fa inherit pub_attribs_class_universal_turn_based_a_i_1_1_evaluator"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1303b4366709d7a5af2fb6e133791fa"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>minValue</b> = float.MinValue</td></tr>
-<tr class="separator:af1303b4366709d7a5af2fb6e133791fa inherit pub_attribs_class_universal_turn_based_a_i_1_1_evaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa3848cf79994e5674487eb1c6f0f796 inherit pub_attribs_class_universal_turn_based_a_i_1_1_evaluator"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa3848cf79994e5674487eb1c6f0f796"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>maxValue</b> = float.MaxValue</td></tr>
-<tr class="separator:aaa3848cf79994e5674487eb1c6f0f796 inherit pub_attribs_class_universal_turn_based_a_i_1_1_evaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa00a794e5d3a65a8a7aded74889b5db1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#aa00a794e5d3a65a8a7aded74889b5db1">GetMinValue</a> ()</td></tr>
+<tr class="memdesc:aa00a794e5d3a65a8a7aded74889b5db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the minimum value any state can have  <a href="#aa00a794e5d3a65a8a7aded74889b5db1">More...</a><br /></td></tr>
+<tr class="separator:aa00a794e5d3a65a8a7aded74889b5db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1076a840c9149590bd3b412c293d9d58"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#a1076a840c9149590bd3b412c293d9d58">GetMaxValue</a> ()</td></tr>
+<tr class="memdesc:a1076a840c9149590bd3b412c293d9d58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the max value any state can have  <a href="#a1076a840c9149590bd3b412c293d9d58">More...</a><br /></td></tr>
+<tr class="separator:a1076a840c9149590bd3b412c293d9d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644da297c62c82415890085bb3976dce"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#a644da297c62c82415890085bb3976dce">Evaluate</a> (<a class="el" href="interface_universal_turn_based_a_i_1_1_i_game_state.html">IGameState</a> state)</td></tr>
+<tr class="memdesc:a644da297c62c82415890085bb3976dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate the specified GameState. Good evaluation functions should return <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#a1076a840c9149590bd3b412c293d9d58" title="Gets the max value any state can have ">GetMaxValue</a> on a winning state and <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#aa00a794e5d3a65a8a7aded74889b5db1" title="Gets the minimum value any state can have ">GetMinValue</a> on a losing state. This method must also provide value to non-terminal states that give the engine some indication of whether the player is closer or further away from winning.  <a href="#a644da297c62c82415890085bb3976dce">More...</a><br /></td></tr>
+<tr class="separator:a644da297c62c82415890085bb3976dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html" title="The super-class for all Evaluators. An Evaluator defines an evaluation function to determine the valu...">Evaluator</a> that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly. </p>
+<div class="textblock"><p>An Evaluator that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3914def8b2e2bb2f6a264a6762b84063"></a>
 <div class="memitem">
@@ -177,7 +170,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxValue</b> = float
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac7248adff1c997e43c63e4f34fc3121c"></a>
+<a class="anchor" id="a644da297c62c82415890085bb3976dce"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -185,22 +178,22 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxValue</b> = float
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override float UniversalTurnBasedAI.EvaluatorRandom.Evaluate </td>
+          <td class="memname">float UniversalTurnBasedAI.EvaluatorRandom.Evaluate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_universal_turn_based_a_i_1_1_game_state.html">GameState</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="interface_universal_turn_based_a_i_1_1_i_game_state.html">IGameState</a>&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Evaluate the specified <a class="el" href="class_universal_turn_based_a_i_1_1_game_state.html" title="The super-class for GameStates. Represents the current state of some game. Implement this class to pr...">GameState</a>. Good evaluation functions should return maxValue on a winning state and minValue on a losing state. This method must also provide value to non-terminal states that give the engine some indication of whether the player is closer or further away from winning. </p>
-<p>As this will need to be called on every searched <a class="el" href="class_universal_turn_based_a_i_1_1_game_state.html" title="The super-class for GameStates. Represents the current state of some game. Implement this class to pr...">GameState</a> the efficiency of this method is directly related to the performance of a <a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html" title="The super-class for all Turn Engines. Implementations of this class control the search for the best T...">TurnEngine</a>. </p>
+<p>Evaluate the specified GameState. Good evaluation functions should return <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#a1076a840c9149590bd3b412c293d9d58" title="Gets the max value any state can have ">GetMaxValue</a> on a winning state and <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator_random.html#aa00a794e5d3a65a8a7aded74889b5db1" title="Gets the minimum value any state can have ">GetMinValue</a> on a losing state. This method must also provide value to non-terminal states that give the engine some indication of whether the player is closer or further away from winning. </p>
+<p>As this will need to be called on every searched <a class="el" href="interface_universal_turn_based_a_i_1_1_i_game_state.html" title="Represents the current state of some game. Implement this interface to provide a TurnEngine with doma...">IGameState</a> the efficiency of this method is directly related to the performance of a <a class="el" href="class_universal_turn_based_a_i_1_1_turn_engine.html" title="The super-class for all Turn Engines. Implementations of this class control the search for the best I...">TurnEngine</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>The state to evaluate</td></tr>
@@ -208,7 +201,63 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxValue</b> = float
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_universal_turn_based_a_i_1_1_evaluator.html#a949d4c3583870a45dc136f1e46114c99">UniversalTurnBasedAI.Evaluator</a>.</p>
+<p>Implements <a class="el" href="interface_universal_turn_based_a_i_1_1_i_evaluator.html#a845b25fea2bcf05593955cdd38ec183c">UniversalTurnBasedAI.IEvaluator</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1076a840c9149590bd3b412c293d9d58"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UniversalTurnBasedAI.EvaluatorRandom.GetMaxValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the max value any state can have </p>
+<dl class="section return"><dt>Returns</dt><dd>The max value.</dd></dl>
+
+<p>Implements <a class="el" href="interface_universal_turn_based_a_i_1_1_i_evaluator.html#afa2d8a740cfe84f7a799a04dc5582e27">UniversalTurnBasedAI.IEvaluator</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa00a794e5d3a65a8a7aded74889b5db1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UniversalTurnBasedAI.EvaluatorRandom.GetMinValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the minimum value any state can have </p>
+<dl class="section return"><dt>Returns</dt><dd>The minimum value.</dd></dl>
+
+<p>Implements <a class="el" href="interface_universal_turn_based_a_i_1_1_i_evaluator.html#a3e18d32b8171e37cd8a85976da5a363b">UniversalTurnBasedAI.IEvaluator</a>.</p>
 
 </div>
 </div>
@@ -218,7 +267,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>maxValue</b> = float
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 13 2015 16:50:38 for Universal Turn Based AI by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 17 2015 15:34:44 for Universal Turn Based AI by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

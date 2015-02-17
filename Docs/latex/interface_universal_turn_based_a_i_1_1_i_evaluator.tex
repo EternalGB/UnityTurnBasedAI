@@ -1,0 +1,98 @@
+\hypertarget{interface_universal_turn_based_a_i_1_1_i_evaluator}{}\section{Universal\+Turn\+Based\+A\+I.\+I\+Evaluator Interface Reference}
+\label{interface_universal_turn_based_a_i_1_1_i_evaluator}\index{Universal\+Turn\+Based\+A\+I.\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I.\+I\+Evaluator}}
+
+
+An Evaluator defines an evaluation function to determine the value of a \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} from the point of view of a particular player.  
+
+
+Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+I\+Evaluator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_universal_turn_based_a_i_1_1_i_evaluator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_a3e18d32b8171e37cd8a85976da5a363b}{Get\+Min\+Value} ()
+\begin{DoxyCompactList}\small\item\em Gets the minimum value any state can have \end{DoxyCompactList}\item 
+float \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_afa2d8a740cfe84f7a799a04dc5582e27}{Get\+Max\+Value} ()
+\begin{DoxyCompactList}\small\item\em Gets the max value any state can have \end{DoxyCompactList}\item 
+float \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_a845b25fea2bcf05593955cdd38ec183c}{Evaluate} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} state)
+\begin{DoxyCompactList}\small\item\em Evaluate the specified Game\+State. Good evaluation functions should return \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_afa2d8a740cfe84f7a799a04dc5582e27}{Get\+Max\+Value} on a winning state and \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_a3e18d32b8171e37cd8a85976da5a363b}{Get\+Min\+Value} on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An Evaluator defines an evaluation function to determine the value of a \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} from the point of view of a particular player. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}, \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State}, \hyperlink{interface_universal_turn_based_a_i_1_1_i_turn}{I\+Turn}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_universal_turn_based_a_i_1_1_i_evaluator_a845b25fea2bcf05593955cdd38ec183c}{}\index{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator}}
+\subsubsection[{Evaluate}]{\setlength{\rightskip}{0pt plus 5cm}float Universal\+Turn\+Based\+A\+I.\+I\+Evaluator.\+Evaluate (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Game\+State}}]{state}
+\end{DoxyParamCaption}
+)}\label{interface_universal_turn_based_a_i_1_1_i_evaluator_a845b25fea2bcf05593955cdd38ec183c}
+
+
+Evaluate the specified Game\+State. Good evaluation functions should return \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_afa2d8a740cfe84f7a799a04dc5582e27}{Get\+Max\+Value} on a winning state and \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_a3e18d32b8171e37cd8a85976da5a363b}{Get\+Min\+Value} on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. 
+
+As this will need to be called on every searched \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} the efficiency of this method is directly related to the performance of a \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The state to evaluate\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a644da297c62c82415890085bb3976dce}{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random}.
+
+\hypertarget{interface_universal_turn_based_a_i_1_1_i_evaluator_afa2d8a740cfe84f7a799a04dc5582e27}{}\index{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator}!Get\+Max\+Value@{Get\+Max\+Value}}
+\index{Get\+Max\+Value@{Get\+Max\+Value}!Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator}}
+\subsubsection[{Get\+Max\+Value}]{\setlength{\rightskip}{0pt plus 5cm}float Universal\+Turn\+Based\+A\+I.\+I\+Evaluator.\+Get\+Max\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{interface_universal_turn_based_a_i_1_1_i_evaluator_afa2d8a740cfe84f7a799a04dc5582e27}
+
+
+Gets the max value any state can have 
+
+\begin{DoxyReturn}{Returns}
+The max value.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a1076a840c9149590bd3b412c293d9d58}{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random}.
+
+\hypertarget{interface_universal_turn_based_a_i_1_1_i_evaluator_a3e18d32b8171e37cd8a85976da5a363b}{}\index{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator}!Get\+Min\+Value@{Get\+Min\+Value}}
+\index{Get\+Min\+Value@{Get\+Min\+Value}!Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator@{Universal\+Turn\+Based\+A\+I\+::\+I\+Evaluator}}
+\subsubsection[{Get\+Min\+Value}]{\setlength{\rightskip}{0pt plus 5cm}float Universal\+Turn\+Based\+A\+I.\+I\+Evaluator.\+Get\+Min\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{interface_universal_turn_based_a_i_1_1_i_evaluator_a3e18d32b8171e37cd8a85976da5a363b}
+
+
+Gets the minimum value any state can have 
+
+\begin{DoxyReturn}{Returns}
+The minimum value.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_aa00a794e5d3a65a8a7aded74889b5db1}{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Generic\+Turn\+Based\+A\+I/I\+Evaluator.\+cs\end{DoxyCompactItemize}

@@ -7,15 +7,15 @@ namespace UniversalTurnBasedAI
 {
 
 	/// <summary>
-	/// The super-class for all Turn Engines. Implementations of this class control the search for the best <see cref="Turn"/>.
+	/// The super-class for all Turn Engines. Implementations of this class control the search for the best <see cref="ITurn"/>.
 	/// Provides an entry point for Unity with <see cref="GetNextTurn"/> which can be used
 	/// in a familiar coroutine pattern. Defines attributes common to all Turn Engines such as depth and time
 	/// limits. Also provides the <see cref="TurnReadyEvent"/>  which is triggered after a turn search has been completed and
 	/// returns the best turn found.
 	/// 
-	/// <seealso cref="GameState"/>
-	/// <seealso cref="Turn"/>
-	/// <seealso cref="Evaluator"/>
+	/// <seealso cref="IGameState"/>
+	/// <seealso cref="ITurn"/>
+	/// <seealso cref="IEvaluator"/>
 	/// </summary>
 	public abstract class TurnEngine
 	{

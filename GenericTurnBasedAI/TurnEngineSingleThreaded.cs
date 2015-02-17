@@ -44,7 +44,7 @@ namespace UniversalTurnBasedAI
 		/// Initializes a new instance of the <see cref="UniversalTurnBasedAI.TurnEngineSingleThreaded"/> class with
 		/// both a time and depth limit.
 		/// </summary>
-		/// <param name="eval">The <see cref="Evaluator"/> to use</param>
+		/// <param name="eval">The <see cref="IEvaluator"/> to use</param>
 		/// <param name="timeLimit">Time limit in seconds. Must be greater than 0</param>
 		/// <param name="depthLimit">Depth limit or maximum "ply". Must be at least 1</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>

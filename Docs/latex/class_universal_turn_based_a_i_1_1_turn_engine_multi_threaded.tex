@@ -14,11 +14,11 @@ Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Thre
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a532f4a7c6111b49ef0af0c0eabaa7bd5}{Turn\+Engine\+Multi\+Threaded} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, float time\+Limit, bool collect\+Stats=false)
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a7159b2c6a0ffb898dc61ca2646399d4b}{Turn\+Engine\+Multi\+Threaded} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator}{I\+Evaluator} eval, float time\+Limit, bool collect\+Stats=false)
 \begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class with a time limit. Once the time limit has been reached the best turn found so far will be {\itshape best\+Turn}  \end{DoxyCompactList}\item 
-\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_ac2a5c6ac3c579c3fe4f53845480e37d4}{Turn\+Engine\+Multi\+Threaded} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, int depth\+Limit, bool collect\+Stats=false)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class with a depth limit. Searches the entire \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} tree up to the specific depth. The best turn found after the search will be {\itshape best\+Turn} . \end{DoxyCompactList}\item 
-\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a8ddc2a8baa309367b57f352c92d5abf4}{Turn\+Engine\+Multi\+Threaded} (\hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} eval, float time\+Limit, int depth\+Limit, bool collect\+Stats=false)
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a2c0825b1812b2c1b0065c1bf977423c4}{Turn\+Engine\+Multi\+Threaded} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator}{I\+Evaluator} eval, int depth\+Limit, bool collect\+Stats=false)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class with a depth limit. Searches the entire Game\+State tree up to the specific depth. The best turn found after the search will be {\itshape best\+Turn} . \end{DoxyCompactList}\item 
+\hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_aba842ea4a30d4c58d1bb139aff873e8a}{Turn\+Engine\+Multi\+Threaded} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator}{I\+Evaluator} eval, float time\+Limit, int depth\+Limit, bool collect\+Stats=false)
 \begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class. \end{DoxyCompactList}\item 
 \hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a01bed3edbbe50d06f06e68b52af13c9c}{}override void {\bfseries Stop} ()\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a01bed3edbbe50d06f06e68b52af13c9c}
 
@@ -34,7 +34,7 @@ override void \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_th
 \subsection{Detailed Description}
 A multi-\/threaded implementation of \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. Uses the same search algorithm as \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Turn\+Engine\+Single\+Threaded} but runs each initial branch in a separate thread. 
 
-This implementation may not be significantly faster than using \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Turn\+Engine\+Single\+Threaded} due to the overhead of managing multiple threads. May see an improvement if your \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} search tree is extremely wide i.\+e. in each state there is a very large number of possible moves to make.
+This implementation may not be significantly faster than using \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Turn\+Engine\+Single\+Threaded} due to the overhead of managing multiple threads. May see an improvement if your Game\+State search tree is extremely wide i.\+e. in each state there is a very large number of possible moves to make.
 
 \begin{DoxySeeAlso}{See also}
 \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}, \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_single_threaded}{Turn\+Engine\+Single\+Threaded}
@@ -44,40 +44,40 @@ This implementation may not be significantly faster than using \hyperlink{class_
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a532f4a7c6111b49ef0af0c0eabaa7bd5}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}!Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a7159b2c6a0ffb898dc61ca2646399d4b}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}!Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}}
 \index{Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}}
 \subsubsection[{Turn\+Engine\+Multi\+Threaded}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded.\+Turn\+Engine\+Multi\+Threaded (
 \begin{DoxyParamCaption}
-\item[{{\bf Evaluator}}]{eval, }
+\item[{{\bf I\+Evaluator}}]{eval, }
 \item[{float}]{time\+Limit, }
 \item[{bool}]{collect\+Stats = {\ttfamily false}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a532f4a7c6111b49ef0af0c0eabaa7bd5}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a7159b2c6a0ffb898dc61ca2646399d4b}
 
 
 Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class with a time limit. Once the time limit has been reached the best turn found so far will be {\itshape best\+Turn}  
 
 
 \begin{DoxyParams}{Parameters}
-{\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator}\\
+{\em eval} & The Evaluator\\
 \hline
 {\em time\+Limit} & The time limit, must be greater than 0\\
 \hline
 {\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
 \hline
 \end{DoxyParams}
-\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_ac2a5c6ac3c579c3fe4f53845480e37d4}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}!Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a2c0825b1812b2c1b0065c1bf977423c4}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}!Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}}
 \index{Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}}
 \subsubsection[{Turn\+Engine\+Multi\+Threaded}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded.\+Turn\+Engine\+Multi\+Threaded (
 \begin{DoxyParamCaption}
-\item[{{\bf Evaluator}}]{eval, }
+\item[{{\bf I\+Evaluator}}]{eval, }
 \item[{int}]{depth\+Limit, }
 \item[{bool}]{collect\+Stats = {\ttfamily false}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_ac2a5c6ac3c579c3fe4f53845480e37d4}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a2c0825b1812b2c1b0065c1bf977423c4}
 
 
-Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class with a depth limit. Searches the entire \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} tree up to the specific depth. The best turn found after the search will be {\itshape best\+Turn} . 
+Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class with a depth limit. Searches the entire Game\+State tree up to the specific depth. The best turn found after the search will be {\itshape best\+Turn} . 
 
 
 \begin{DoxyParams}{Parameters}
@@ -88,23 +88,23 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 {\em collect\+Stats} & If set to {\ttfamily true} collect stats.\\
 \hline
 \end{DoxyParams}
-\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a8ddc2a8baa309367b57f352c92d5abf4}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}!Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}}
+\hypertarget{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_aba842ea4a30d4c58d1bb139aff873e8a}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}!Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}}
 \index{Turn\+Engine\+Multi\+Threaded@{Turn\+Engine\+Multi\+Threaded}!Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded@{Universal\+Turn\+Based\+A\+I\+::\+Turn\+Engine\+Multi\+Threaded}}
 \subsubsection[{Turn\+Engine\+Multi\+Threaded}]{\setlength{\rightskip}{0pt plus 5cm}Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded.\+Turn\+Engine\+Multi\+Threaded (
 \begin{DoxyParamCaption}
-\item[{{\bf Evaluator}}]{eval, }
+\item[{{\bf I\+Evaluator}}]{eval, }
 \item[{float}]{time\+Limit, }
 \item[{int}]{depth\+Limit, }
 \item[{bool}]{collect\+Stats = {\ttfamily false}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_a8ddc2a8baa309367b57f352c92d5abf4}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded_aba842ea4a30d4c58d1bb139aff873e8a}
 
 
 Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine_multi_threaded}{Universal\+Turn\+Based\+A\+I.\+Turn\+Engine\+Multi\+Threaded} class. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em eval} & The \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} to use\\
+{\em eval} & The \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator}{I\+Evaluator} to use\\
 \hline
 {\em time\+Limit} & Time limit in seconds. Must be greater than 0\\
 \hline

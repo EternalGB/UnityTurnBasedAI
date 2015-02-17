@@ -1,0 +1,59 @@
+\hypertarget{interface_universal_turn_based_a_i_1_1_i_turn}{}\section{Universal\+Turn\+Based\+A\+I.\+I\+Turn Interface Reference}
+\label{interface_universal_turn_based_a_i_1_1_i_turn}\index{Universal\+Turn\+Based\+A\+I.\+I\+Turn@{Universal\+Turn\+Based\+A\+I.\+I\+Turn}}
+
+
+Represents the sum of actions that a player can take on their turn in the game.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} \hyperlink{interface_universal_turn_based_a_i_1_1_i_turn_a1df5a4802be8dfbed323a6ef94133ff8}{Apply\+Turn} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} state)
+\begin{DoxyCompactList}\small\item\em Applies this \hyperlink{interface_universal_turn_based_a_i_1_1_i_turn}{I\+Turn} to {\itshape state}  giving the resulting \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State}. The \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine} clones {\itshape state}  before passing it to this function when called internally to prevent the original Game\+State from being overridden \begin{DoxySeeAlso}{See also}
+\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State}, \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}
+
+
+\end{DoxySeeAlso}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents the sum of actions that a player can take on their turn in the game. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State}, \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}
+
+
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_universal_turn_based_a_i_1_1_i_turn_a1df5a4802be8dfbed323a6ef94133ff8}{}\index{Universal\+Turn\+Based\+A\+I\+::\+I\+Turn@{Universal\+Turn\+Based\+A\+I\+::\+I\+Turn}!Apply\+Turn@{Apply\+Turn}}
+\index{Apply\+Turn@{Apply\+Turn}!Universal\+Turn\+Based\+A\+I\+::\+I\+Turn@{Universal\+Turn\+Based\+A\+I\+::\+I\+Turn}}
+\subsubsection[{Apply\+Turn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Game\+State} Universal\+Turn\+Based\+A\+I.\+I\+Turn.\+Apply\+Turn (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Game\+State}}]{state}
+\end{DoxyParamCaption}
+)}\label{interface_universal_turn_based_a_i_1_1_i_turn_a1df5a4802be8dfbed323a6ef94133ff8}
+
+
+Applies this \hyperlink{interface_universal_turn_based_a_i_1_1_i_turn}{I\+Turn} to {\itshape state}  giving the resulting \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State}. The \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine} clones {\itshape state}  before passing it to this function when called internally to prevent the original Game\+State from being overridden \begin{DoxySeeAlso}{See also}
+\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State}, \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}
+
+
+\end{DoxySeeAlso}
+
+
+\begin{DoxyReturn}{Returns}
+The Game\+State that is a result of applying this turn to {\itshape state} .
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The state to apply the turn to.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Generic\+Turn\+Based\+A\+I/I\+Turn.\+cs\end{DoxyCompactItemize}

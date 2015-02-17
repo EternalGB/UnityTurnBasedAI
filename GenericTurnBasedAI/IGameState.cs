@@ -13,8 +13,8 @@ namespace UniversalTurnBasedAI
 	/// about the state that can be used by an evaluation function rather than having the evaluation
 	/// function compute the information every time. For example, counts of things within the GameState.
 	/// <seealso cref="TurnEngine"/>
-	/// <seealso cref="Turn"/>
-	/// <seealso cref="Evaluator"/>
+	/// <seealso cref="ITurn"/>
+	/// <seealso cref="IEvaluator"/>
 	/// </summary>
 	public interface IGameState
 	{
@@ -26,7 +26,7 @@ namespace UniversalTurnBasedAI
 		bool IsTerminal();
 
 		/// <summary>
-		/// A coroutine for generating every possible <see cref="Turn"/>. Generating turns this way
+		/// A coroutine for generating every possible <see cref="ITurn"/>. Generating turns this way
 		/// allows turns to be generated and search lazily. The efficiency of generating each turn
 		/// effects the performance of the <see cref="TurnEngine"/>. You will only get the benefits
 		/// of lazy evaluation if you yield each turn after generating them. Generating all turns and
@@ -39,11 +39,11 @@ namespace UniversalTurnBasedAI
 
 		/// <summary>
 		/// Returns an exact copy of the current GameState with new references. Any GameState information that
-		/// is altered by a <see cref="Turn"/> should be deep copied to prevent Turns writing over shared information. 
+		/// is altered by a <see cref="ITurn"/> should be deep copied to prevent Turns writing over shared information. 
 		/// 
 		/// The efficiency of this method effects the performance of the <see cref="TurnEngine"/>, try to copy as little
 		/// information as possible but remember that you will probably need new instances of any 
-		/// reference types that can be altered by a <see cref="Turn"/>.
+		/// reference types that can be altered by a <see cref="ITurn"/>.
 		/// </summary>
 		IGameState Clone();
 		

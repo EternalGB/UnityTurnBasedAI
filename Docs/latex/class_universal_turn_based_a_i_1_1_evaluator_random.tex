@@ -2,7 +2,7 @@
 \label{class_universal_turn_based_a_i_1_1_evaluator_random}\index{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random}}
 
 
-An \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly.  
+An Evaluator that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly.  
 
 
 Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random\+:\begin{figure}[H]
@@ -16,16 +16,16 @@ Inheritance diagram for Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random\+:\begi
 \item 
 \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a3914def8b2e2bb2f6a264a6762b84063}{Evaluator\+Random} (float min, float max)
 \begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random}{Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random} class. \end{DoxyCompactList}\item 
-override float \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_ac7248adff1c997e43c63e4f34fc3121c}{Evaluate} (\hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} state)
-\begin{DoxyCompactList}\small\item\em Evaluate the specified \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}. Good evaluation functions should return max\+Value on a winning state and min\+Value on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. \end{DoxyCompactList}\item 
-\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_random_a15c6ccc02b7939167f538f82643139bd}{}override \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} {\bfseries Clone} ()\label{class_universal_turn_based_a_i_1_1_evaluator_random_a15c6ccc02b7939167f538f82643139bd}
-
-\end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
+float \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_aa00a794e5d3a65a8a7aded74889b5db1}{Get\+Min\+Value} ()
+\begin{DoxyCompactList}\small\item\em Gets the minimum value any state can have \end{DoxyCompactList}\item 
+float \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a1076a840c9149590bd3b412c293d9d58}{Get\+Max\+Value} ()
+\begin{DoxyCompactList}\small\item\em Gets the max value any state can have \end{DoxyCompactList}\item 
+float \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a644da297c62c82415890085bb3976dce}{Evaluate} (\hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} state)
+\begin{DoxyCompactList}\small\item\em Evaluate the specified Game\+State. Good evaluation functions should return \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a1076a840c9149590bd3b412c293d9d58}{Get\+Max\+Value} on a winning state and \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_aa00a794e5d3a65a8a7aded74889b5db1}{Get\+Min\+Value} on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-An \hyperlink{class_universal_turn_based_a_i_1_1_evaluator}{Evaluator} that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly. 
+An Evaluator that returns random values for every state. Can be useful to test other evaluation functions. Any evaluation function should be at least as good as selecting moves randomly. 
 
 
 
@@ -52,18 +52,18 @@ Initializes a new instance of the \hyperlink{class_universal_turn_based_a_i_1_1_
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_random_ac7248adff1c997e43c63e4f34fc3121c}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}!Evaluate@{Evaluate}}
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_random_a644da297c62c82415890085bb3976dce}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}!Evaluate@{Evaluate}}
 \index{Evaluate@{Evaluate}!Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}}
-\subsubsection[{Evaluate}]{\setlength{\rightskip}{0pt plus 5cm}override float Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random.\+Evaluate (
+\subsubsection[{Evaluate}]{\setlength{\rightskip}{0pt plus 5cm}float Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random.\+Evaluate (
 \begin{DoxyParamCaption}
-\item[{{\bf Game\+State}}]{state}
+\item[{{\bf I\+Game\+State}}]{state}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_universal_turn_based_a_i_1_1_evaluator_random_ac7248adff1c997e43c63e4f34fc3121c}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_evaluator_random_a644da297c62c82415890085bb3976dce}
 
 
-Evaluate the specified \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State}. Good evaluation functions should return max\+Value on a winning state and min\+Value on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. 
+Evaluate the specified Game\+State. Good evaluation functions should return \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_a1076a840c9149590bd3b412c293d9d58}{Get\+Max\+Value} on a winning state and \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_random_aa00a794e5d3a65a8a7aded74889b5db1}{Get\+Min\+Value} on a losing state. This method must also provide value to non-\/terminal states that give the engine some indication of whether the player is closer or further away from winning. 
 
-As this will need to be called on every searched \hyperlink{class_universal_turn_based_a_i_1_1_game_state}{Game\+State} the efficiency of this method is directly related to the performance of a \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. 
+As this will need to be called on every searched \hyperlink{interface_universal_turn_based_a_i_1_1_i_game_state}{I\+Game\+State} the efficiency of this method is directly related to the performance of a \hyperlink{class_universal_turn_based_a_i_1_1_turn_engine}{Turn\+Engine}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -72,7 +72,43 @@ As this will need to be called on every searched \hyperlink{class_universal_turn
 \end{DoxyParams}
 
 
-Implements \hyperlink{class_universal_turn_based_a_i_1_1_evaluator_a949d4c3583870a45dc136f1e46114c99}{Universal\+Turn\+Based\+A\+I.\+Evaluator}.
+Implements \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_a845b25fea2bcf05593955cdd38ec183c}{Universal\+Turn\+Based\+A\+I.\+I\+Evaluator}.
+
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_random_a1076a840c9149590bd3b412c293d9d58}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}!Get\+Max\+Value@{Get\+Max\+Value}}
+\index{Get\+Max\+Value@{Get\+Max\+Value}!Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}}
+\subsubsection[{Get\+Max\+Value}]{\setlength{\rightskip}{0pt plus 5cm}float Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random.\+Get\+Max\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_evaluator_random_a1076a840c9149590bd3b412c293d9d58}
+
+
+Gets the max value any state can have 
+
+\begin{DoxyReturn}{Returns}
+The max value.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_afa2d8a740cfe84f7a799a04dc5582e27}{Universal\+Turn\+Based\+A\+I.\+I\+Evaluator}.
+
+\hypertarget{class_universal_turn_based_a_i_1_1_evaluator_random_aa00a794e5d3a65a8a7aded74889b5db1}{}\index{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}!Get\+Min\+Value@{Get\+Min\+Value}}
+\index{Get\+Min\+Value@{Get\+Min\+Value}!Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random@{Universal\+Turn\+Based\+A\+I\+::\+Evaluator\+Random}}
+\subsubsection[{Get\+Min\+Value}]{\setlength{\rightskip}{0pt plus 5cm}float Universal\+Turn\+Based\+A\+I.\+Evaluator\+Random.\+Get\+Min\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_universal_turn_based_a_i_1_1_evaluator_random_aa00a794e5d3a65a8a7aded74889b5db1}
+
+
+Gets the minimum value any state can have 
+
+\begin{DoxyReturn}{Returns}
+The minimum value.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_universal_turn_based_a_i_1_1_i_evaluator_a3e18d32b8171e37cd8a85976da5a363b}{Universal\+Turn\+Based\+A\+I.\+I\+Evaluator}.
 
 
 

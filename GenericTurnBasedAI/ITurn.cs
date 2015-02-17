@@ -7,16 +7,16 @@ namespace UniversalTurnBasedAI
 	/// Represents the sum of actions that a player can take on their turn
 	/// in the game.
 	/// 
-	/// <seealso cref="GameState"/>
+	/// <seealso cref="IGameState"/>
 	/// <seealso cref="TurnEngine"/>
 	/// </summary>
 	public interface ITurn 
 	{
 		/// <summary>
-		/// Applies this <see cref="Turn"/> to <paramref name="state"/> giving the resulting <see cref="GameState"/>.
+		/// Applies this <see cref="ITurn"/> to <paramref name="state"/> giving the resulting <see cref="IGameState"/>.
 		/// The <see cref="TurnEngine"/> clones <paramref name="state"/> before passing it to this function when called internally
 		/// to prevent the original GameState from being overridden
-		/// <seealso cref="GameState"/>
+		/// <seealso cref="IGameState"/>
 		/// <seealso cref="TurnEngine"/>
 		/// </summary>
 		/// <returns>The GameState that is a result of applying this turn to <paramref name="state"/>.</returns>
