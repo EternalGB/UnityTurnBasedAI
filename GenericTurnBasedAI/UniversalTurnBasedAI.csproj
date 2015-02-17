@@ -43,14 +43,14 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="EngineStats.cs" />
-    <Compile Include="Evaluator.cs" />
     <Compile Include="EvaluatorRandom.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="Turn.cs" />
     <Compile Include="TurnEngine.cs" />
     <Compile Include="TurnEngineMultiThreaded.cs" />
     <Compile Include="MinimaxWorker.cs" />
     <Compile Include="TurnEngineSingleThreaded.cs" />
+    <Compile Include="IGameState.cs" />
+    <Compile Include="ITurn.cs" />
+    <Compile Include="IEvaluator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,7 +29,7 @@ namespace UniversalTurnBasedAI
 		/// <param name="eval">The Evaluator</param>
 		/// <param name="timeLimit">The time limit, must be greater than 0</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
-		public TurnEngineMultiThreaded (Evaluator eval, float timeLimit, bool collectStats = false)
+		public TurnEngineMultiThreaded (IEvaluator eval, float timeLimit, bool collectStats = false)
 		{
 			InitEngine(eval,timeLimit,int.MaxValue,true,collectStats);
 		}
@@ -42,7 +42,7 @@ namespace UniversalTurnBasedAI
 		/// <param name="eval">Eval.</param>
 		/// <param name="depthLimit">Depth limit, must be at least 1</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
-		public TurnEngineMultiThreaded (Evaluator eval, int depthLimit, bool collectStats = false)
+		public TurnEngineMultiThreaded (IEvaluator eval, int depthLimit, bool collectStats = false)
 		{
 			InitEngine(eval,float.MaxValue,depthLimit,false,collectStats);
 		}
@@ -54,7 +54,7 @@ namespace UniversalTurnBasedAI
 		/// <param name="timeLimit">Time limit in seconds. Must be greater than 0</param>
 		/// <param name="depthLimit">Depth limit or maximum "ply". Must be at least 1</param>
 		/// <param name="collectStats">If set to <c>true</c> collect stats.</param>
-		public TurnEngineMultiThreaded(Evaluator eval, float timeLimit, int depthLimit, bool collectStats = false)
+		public TurnEngineMultiThreaded(IEvaluator eval, float timeLimit, int depthLimit, bool collectStats = false)
 		{
 			InitEngine(eval,timeLimit, depthLimit, true,collectStats);
 		}
@@ -75,13 +75,13 @@ namespace UniversalTurnBasedAI
 		{
 			DateTime startTime = new DateTime(DateTime.Now.Ticks);
 			bool exit = false;
-			List<Turn> results = null;
-			float resultsValue = eval.minValue;
-			GameState root = (GameState)state;
+			List<ITurn> results = null;
+			float resultsValue = eval.GetMinValue();
+			IGameState root = (IGameState)state;
 
 			//precompute the first level so we don't have to every time
-			List<Turn> rootTurns = new List<Turn>();
-			foreach(Turn turn in root.GeneratePossibleTurns()) {
+			List<ITurn> rootTurns = new List<ITurn>();
+			foreach(ITurn turn in root.GeneratePossibleTurns()) {
 				rootTurns.Add(turn);
 				if(Exit) {
 					exit = true;
@@ -91,13 +91,13 @@ namespace UniversalTurnBasedAI
 			//this is so we can bail out without evaluating any turns
 			results = rootTurns;
 			if(exit) {
-				bestTurn = GetRandomElement<Turn>(results);
+				bestTurn = GetRandomElement<ITurn>(results);
 				return;
 			}
 
 			int depth;
 			for(depth = 1; depth <= maxDepth && !exit; depth++) {
-				List<Turn> potentialTurns = new List<Turn>();
+				List<ITurn> potentialTurns = new List<ITurn>();
 
 				List<ManualResetEvent> doneEvents = new List<ManualResetEvent>();
 				List<MinimaxWorker> threadWorkers = new List<MinimaxWorker>();
@@ -108,7 +108,7 @@ namespace UniversalTurnBasedAI
 				else
 					timeOut = Timeout.Infinite;
 
-				foreach(Turn turn in rootTurns) {
+				foreach(ITurn turn in rootTurns) {
 
 					ManualResetEvent waitHandle = new ManualResetEvent(false);
 					MinimaxWorker nextWorker = new MinimaxWorker(root.Clone(), turn, eval, depth, false, waitHandle);
@@ -120,7 +120,7 @@ namespace UniversalTurnBasedAI
 				lastThreadWorkers = threadWorkers;
 				lastDoneEvents = doneEvents;
 
-				float bestValue = eval.minValue;
+				float bestValue = eval.GetMinValue();
 				if(WaitHandle.WaitAll(doneEvents.ToArray(),timeOut) && !stopped) {
 					foreach(MinimaxWorker mm in threadWorkers) {
 						if(mm.Value >= bestValue) {
@@ -147,7 +147,7 @@ namespace UniversalTurnBasedAI
 				} else if(timeLimited)
 					//for debugging/logging purposes
 					depth--;
-				bestTurn = GetRandomElement<Turn>(results);
+				bestTurn = GetRandomElement<ITurn>(results);
 				lastThreadWorkers = null;
 				lastDoneEvents = null;
 			}

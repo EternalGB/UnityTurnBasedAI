@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -23,7 +23,7 @@ namespace UniversalTurnBasedAI
 		protected int maxDepth;
 		protected float maxTime;
 		protected bool timeLimited = false;
-		protected Evaluator eval;
+		protected IEvaluator eval;
 		protected System.Random rando;
 		EngineStats _stats;
 		/// <summary>
@@ -58,9 +58,9 @@ namespace UniversalTurnBasedAI
 		protected bool collectStats = false;
 		protected bool stopped = true;
 
-		protected Turn bestTurn;
+		protected ITurn bestTurn;
 
-		public delegate void TurnReady(Turn bestTurn);
+		public delegate void TurnReady(ITurn bestTurn);
 		/// <summary>
 		/// Triggered after <see cref="GetNextTurn"/> has been called and the found turn is ready to be returned.
 		/// <see cref="bestTurn"/>  will be the best turn discovered by the engine
@@ -76,7 +76,7 @@ namespace UniversalTurnBasedAI
 		/// <param name="timeLimited">If set to <c>true</c> Search will end after the set timeLimit, otherwise
 		/// search will complete to the set depthLimit</param>
 		/// <param name="collectStats">If set to <c>true</c> collect statistics.</param>
-		protected void InitEngine(Evaluator eval, float timeLimit, int depthLimit, bool timeLimited, bool collectStats)
+		protected void InitEngine(IEvaluator eval, float timeLimit, int depthLimit, bool timeLimited, bool collectStats)
 		{
 
 			if(timeLimit <= 0) {
@@ -110,7 +110,7 @@ namespace UniversalTurnBasedAI
 		/// </example>
 		/// </summary>
 		/// <param name="state">State.</param>
-		public System.Collections.IEnumerator GetNextTurn(GameState state) 
+		public System.Collections.IEnumerator GetNextTurn(IGameState state) 
 		{
 			bestTurn = null;
 			Thread thread = new Thread(() => ExecuteAndCatch(TurnSearchDelegate, state, ExceptionHandler));
